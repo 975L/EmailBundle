@@ -87,7 +87,6 @@ class Email
 
     public function __construct()
     {
-dump('eeeeeeeeeee');die;
         $this->setDateSent(new \DateTime());
     }
 
@@ -100,17 +99,18 @@ dump('eeeeeeeeeee');die;
         }
     }
 
+
     public function send()
     {
         if (\Swift_Validate::email($this->getSentTo())) {
             $message = (new \Swift_Message())
+                ->setFrom($this->getSentFrom())
                 ->setSubject($this->getSubject())
                 ->setTo($this->getSentTo())
                 ->setBody($this->getBody())
                 ->setContentType('text/html');
 
             //Adds other address
-            if ($this->getSentFrom() !== '' && \Swift_Validate::email($this->getSentFrom())) $message->setFrom($this->getSentFrom());
             if ($this->getSentCc() !== '' && \Swift_Validate::email($this->getSentCc())) $message->setCc($this->getSentCc());
             if ($this->getSentBcc() !== '' && \Swift_Validate::email($this->getSentBcc())) $message->setBcc($this->getSentBcc());
             if ($this->getReplyTo() !== '' && \Swift_Validate::email($this->getReplyTo())) $message->setReplyTo($this->getReplyTo());
@@ -123,9 +123,18 @@ dump('eeeeeeeeeee');die;
 
 
     /**
-     * Set mailer
+     * Get id
      *
-     * @param \DateTime $mailer
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * Set mailer
      *
      * @return Email
      */
@@ -139,7 +148,7 @@ dump('eeeeeeeeeee');die;
     /**
      * Get mailer
      *
-     * @return \DateTime
+     * @return object
      */
     public function getMailer()
     {
@@ -148,8 +157,6 @@ dump('eeeeeeeeeee');die;
 
     /**
      * Set dateSent
-     *
-     * @param \DateTime $dateSent
      *
      * @return Email
      */
@@ -173,8 +180,6 @@ dump('eeeeeeeeeee');die;
     /**
      * Set subject
      *
-     * @param string $subject
-     *
      * @return Email
      */
     public function setSubject($subject)
@@ -196,8 +201,6 @@ dump('eeeeeeeeeee');die;
 
     /**
      * Set sentFrom
-     *
-     * @param string $sentFrom
      *
      * @return Email
      */
@@ -221,8 +224,6 @@ dump('eeeeeeeeeee');die;
     /**
      * Set sentTo
      *
-     * @param string $sentTo
-     *
      * @return Email
      */
     public function setSentTo($sentTo)
@@ -244,8 +245,6 @@ dump('eeeeeeeeeee');die;
 
     /**
      * Set sentCc
-     *
-     * @param string $sentCc
      *
      * @return Email
      */
@@ -269,8 +268,6 @@ dump('eeeeeeeeeee');die;
     /**
      * Set sentBcc
      *
-     * @param string $sentBcc
-     *
      * @return Email
      */
     public function setSentBcc($sentBcc)
@@ -292,8 +289,6 @@ dump('eeeeeeeeeee');die;
 
     /**
      * Set replyTo
-     *
-     * @param string $replyTo
      *
      * @return Email
      */
@@ -317,8 +312,6 @@ dump('eeeeeeeeeee');die;
     /**
      * Set body
      *
-     * @param string $body
-     *
      * @return Email
      */
     public function setBody($body)
@@ -341,8 +334,6 @@ dump('eeeeeeeeeee');die;
     /**
      * Set ip
      *
-     * @param string $ip
-     *
      * @return Email
      */
     public function setIp($ip)
@@ -362,14 +353,5 @@ dump('eeeeeeeeeee');die;
         return $this->ip;
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }
 
