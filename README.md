@@ -96,7 +96,8 @@ class XXXController extends Controller
             'sentFrom' => $this->getParameter('c975_l_email.sentFrom'),
             'sentTo' => 'contact@example.com',
             'sentCc' => 'contact@example.com', //optional
-            'ReplyTo' => 'contact@example.com', //optional
+            'sentBcc' => 'contact@example.com', //optional
+            'replyTo' => 'contact@example.com', //optional
             'body' => $body,
             'ip' => $request->getClientIp(),
             );
