@@ -73,14 +73,17 @@ Step 4: How to use
 ------------------
 In your Controller file add this code to create, insert in DB and send your email:
 ```php
-...
+<?php
+// src/Controller/XXXController.php
+
+// ...
 use c975L\EmailBundle\Entity\Email;
 
 class XXXController extends Controller
 {
     public function XXX(Request $request)
     {
-        ...
+        // ...
         //Gets the manager
         $em = $this->getDoctrine()->getManager();
 
@@ -114,9 +117,9 @@ class XXXController extends Controller
 
         //Sends email
         $email->send();
-        ...
+        // ...
     }
 
-    ...
+    // ...
 }
 ```
