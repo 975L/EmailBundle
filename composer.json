@@ -22,7 +22,7 @@
         "symfony/framework-bundle": "3.*",
         "sensio/framework-extra-bundle": "3.*",
         "symfony/assetic-bundle": "2.*",
-        "symfony/swiftmailer-bundle": "2.*"
+        "symfony/swiftmailer-bundle": "3.*"
     },
     "minimum-stability": "dev",
     "autoload": {
