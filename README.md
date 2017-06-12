@@ -102,7 +102,7 @@ class XXXController extends Controller
             'sentBcc' => 'contact@example.com', //optional
             'replyTo' => 'contact@example.com', //optional
             'body' => $body,
-            'ip' => $request->getClientIp(),
+            'ip' => $request->getClientIp(), //optional
             );
 
         //Creates the object

@@ -1,5 +1,9 @@
 # Changelog
 
+v1.3
+----
+- Replacment of Swift_Validate by Egulias\EmailValidator\EmailValidator (12/06/2017)
+
 v1.2
 ----
 - Upgrade to "symfony/swiftmailer-bundle": "3.*" (06/06/2017)

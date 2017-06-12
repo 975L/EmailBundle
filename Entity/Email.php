@@ -10,6 +10,8 @@
 namespace c975L\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 
 /**
  * Email
@@ -109,7 +111,9 @@ class Email
 
     public function send()
     {
-        if (\Swift_Validate::email($this->getSentTo())) {
+        $validator = new EmailValidator();
+
+        if ($validator->isValid($this->getSentTo(), new RFCValidation())) {
             $message = (new \Swift_Message())
                 ->setFrom($this->getSentFrom())
                 ->setSubject($this->getSubject())
@@ -118,9 +122,9 @@ class Email
                 ->setContentType('text/html');
 
             //Adds other address
-            if ($this->getSentCc() !== '' && \Swift_Validate::email($this->getSentCc())) $message->setCc($this->getSentCc());
-            if ($this->getSentBcc() !== '' && \Swift_Validate::email($this->getSentBcc())) $message->setBcc($this->getSentBcc());
-            if ($this->getReplyTo() !== '' && \Swift_Validate::email($this->getReplyTo())) $message->setReplyTo($this->getReplyTo());
+            if ($this->getSentCc() !== '' && $validator->isValid($this->getSentCc(), new RFCValidation())) $message->setCc($this->getSentCc());
+            if ($this->getSentBcc() !== '' && $validator->isValid($this->getSentBcc(), new RFCValidation())) $message->setBcc($this->getSentBcc());
+            if ($this->getReplyTo() !== '' && $validator->isValid($this->getReplyTo(), new RFCValidation())) $message->setReplyTo($this->getReplyTo());
 
             //Sends email
             $this->mailer->send($message);
