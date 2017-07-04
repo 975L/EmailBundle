@@ -6,6 +6,8 @@ EmailBundle does the following:
 - Stores email in a database,
 - Sends email using SwiftMailer.
 
+[Email Bundle dedicated web page](https://975l.com/en/pages/email-bundle).
+
 Bundle installation
 ===================
 
@@ -26,9 +28,8 @@ $ composer update
 
 This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
 
-Step 2: Enable the Bundle
--------------------------
-
+Step 2: Enable the Bundles
+--------------------------
 Then, enable the bundle by adding it to the list of registered bundles in the `app/AppKernel.php` file of your project:
 
 ```php
@@ -42,6 +43,8 @@ class AppKernel extends Kernel
     {
         $bundles = [
             // ...
+            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new c975L\EmailBundle\c975LEmailBundle(),
         ];
 
@@ -52,38 +55,78 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Configure the Bundle
-----------------------------
-
-Then, in the `app/config.yml` file of your project, define `sentFrom` as the email address used to send emails.
+Step 3: Configure the Bundles
+-----------------------------
+Then, in the `app/config.yml` file of your project, define data for SwiftMailer, Doctrine and `sentFrom` as the email address used to send emails.
 
 ```yml
 #app/config/config.yml
 
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+    auth_mode:  login
+    port:       587
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# EmailBundle
 c975_l_email:
     sentFrom: 'contact@example.com'
 ```
+Then add the correct values in the `parameters.yml`.
 
-Step 5: Create MySql tables
----------------------------
+```yml
+#app/config/parameters.yml
+parameters:
+    database_host: localhost
+    database_port: 80
+    database_name: database_name
+    database_user: databse_user
+    database_password: database_password
+    mailer_transport: smtp
+    mailer_host: mail.example.com
+    mailer_user: contact@example.com
+    mailer_password: email_password
+```
 
-- Use `/Resources/sql/TableCreation.sql` to create the tables `emails`. The `DROP TABLE` is commented to avoid dropping by mistake.
+Step 4: Create MySql table
+--------------------------
+- Use `/Resources/sql/emails.sql` to create the tables `emails`. The `DROP TABLE` is commented to avoid dropping by mistake.
 
-Step 4: How to use
-------------------
+How to use
+----------
 In your Controller file add this code to create, insert in DB and send your email:
 ```php
 <?php
-// src/Controller/XXXController.php
+// src/Controller/AnyController.php
 
 // ...
 use c975L\EmailBundle\Entity\Email;
 
-class XXXController extends Controller
+class AnyController extends Controller
 {
-    public function XXX(Request $request)
+    public function anyFunction(Request $request)
     {
         // ...
+
         //Gets the manager
         $em = $this->getDoctrine()->getManager();
 
@@ -117,6 +160,7 @@ class XXXController extends Controller
 
         //Sends email
         $email->send();
+
         // ...
     }
 

@@ -22,7 +22,7 @@ class c975LEmailExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $processedConfig = $this->processConfiguration( $configuration, $configs );
+        $processedConfig = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('c975_l_email.sentFrom', $processedConfig['sentFrom']);
     }

@@ -1,5 +1,11 @@
 # Changelog
 
+v1.4
+----
+- Renaming of file Resources/sql/TableCreation.sql to emails.sql (13/06/2017)
+- Add information about SwiftMailer (04/07/2017)
+- Update of requirements in `composer.json`
+
 v1.3
 ----
 - Replacment of Swift_Validate by Egulias\EmailValidator\EmailValidator (12/06/2017)
