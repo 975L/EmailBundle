@@ -1,5 +1,9 @@
 # Changelog
 
+v1.4.1
+------
+- Add the sql code to be able to archive emails in another table on a regular basis (04/07/2017)
+
 v1.4
 ----
 - Renaming of file Resources/sql/TableCreation.sql to emails.sql (13/06/2017)
@@ -37,4 +41,4 @@ v1.0.1
 
 v1.0
 ----
-- Creation of bundle  (05/06/2017)
+- Creation of bundle (05/06/2017)

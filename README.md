@@ -109,7 +109,9 @@ parameters:
 
 Step 4: Create MySql table
 --------------------------
-- Use `/Resources/sql/emails.sql` to create the tables `emails`. The `DROP TABLE` is commented to avoid dropping by mistake.
+Use `/Resources/sql/emails.sql` to create the table `emails`. The `DROP TABLE` is commented to avoid dropping by mistake.
+
+You also have the possibility to create another table to archive emails using a MySql Procedure, see in `/Resources/sql/emails.sql` to un-comment the creation of these.
 
 How to use
 ----------
