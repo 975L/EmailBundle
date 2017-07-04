@@ -34,9 +34,6 @@ Then, enable the bundle by adding it to the list of registered bundles in the `a
 
 ```php
 <?php
-// app/AppKernel.php
-
-// ...
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -47,11 +44,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new c975L\EmailBundle\c975LEmailBundle(),
         ];
-
-        // ...
     }
-
-    // ...
 }
 ```
 
@@ -60,9 +53,7 @@ Step 3: Configure the Bundles
 Then, in the `app/config.yml` file of your project, define data for SwiftMailer, Doctrine and `sentFrom` as the email address used to send emails.
 
 ```yml
-#app/config/config.yml
-
-# Swiftmailer Configuration
+#Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
@@ -72,7 +63,7 @@ swiftmailer:
     auth_mode:  login
     port:       587
 
-# Doctrine Configuration
+#Doctrine Configuration
 doctrine:
     dbal:
         driver:   pdo_mysql
@@ -87,14 +78,13 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# EmailBundle
+#EmailBundle
 c975_l_email:
     sentFrom: 'contact@example.com'
 ```
 Then add the correct values in the `parameters.yml`.
 
 ```yml
-#app/config/parameters.yml
 parameters:
     database_host: localhost
     database_port: 80
@@ -120,7 +110,6 @@ In your Controller file add this code to create, insert in DB and send your emai
 <?php
 // src/Controller/AnyController.php
 
-// ...
 use c975L\EmailBundle\Entity\Email;
 
 class AnyController extends Controller
@@ -165,7 +154,5 @@ class AnyController extends Controller
 
         // ...
     }
-
-    // ...
 }
 ```

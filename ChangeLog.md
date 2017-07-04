@@ -1,5 +1,9 @@
 # Changelog
 
+v1.4.2
+------
+- Update README.md (04/07/2017)
+
 v1.4.1
 ------
 - Add the sql code to be able to archive emails in another table on a regular basis (04/07/2017)
