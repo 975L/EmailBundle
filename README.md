@@ -118,9 +118,6 @@ class AnyController extends Controller
     {
         // ...
 
-        //Gets the manager
-        $em = $this->getDoctrine()->getManager();
-
         //Build your email
         $bodyEmail = 'emails/XXX.html.twig';
         $bodyData = array(
@@ -139,18 +136,9 @@ class AnyController extends Controller
             'ip' => $request->getClientIp(), //optional
             );
 
-        //Creates the object
-        $email = new Email();
-
-        //Calls all the setters for the data specified above
-        $email->setDataFromArray($emailData);
-
-        //Persists Email in DB
-        $em->persist($email);
-        $em->flush();
-
         //Sends email
-        $email->send();
+        $emailService = $this->get(\c975L\EmailBundle\Service\EmailService::class);
+        $emailService->send($emailData);
 
         // ...
     }

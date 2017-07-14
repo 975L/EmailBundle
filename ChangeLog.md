@@ -1,5 +1,9 @@
 # Changelog
 
+v1.5
+----
+- Add of EmailService to avoid sending mailer and make easier use of the bundle, DB flush is done inside the service (14/07/2017)
+
 v1.4.2
 ------
 - Update README.md (04/07/2017)

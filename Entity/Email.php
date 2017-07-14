@@ -10,8 +10,6 @@
 namespace c975L\EmailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\RFCValidation;
 
 /**
  * Email
@@ -90,15 +88,6 @@ class Email
      */
     protected $ip;
 
-    protected $mailer;
-
-
-
-    public function __construct()
-    {
-        $this->setDateSent(new \DateTime());
-    }
-
 
     public function setDataFromArray($data)
     {
@@ -109,30 +98,6 @@ class Email
     }
 
 
-    public function send()
-    {
-        $validator = new EmailValidator();
-
-        if ($validator->isValid($this->getSentTo(), new RFCValidation())) {
-            $message = (new \Swift_Message())
-                ->setFrom($this->getSentFrom())
-                ->setSubject($this->getSubject())
-                ->setTo($this->getSentTo())
-                ->setBody($this->getBody())
-                ->setContentType('text/html');
-
-            //Adds other address
-            if ($this->getSentCc() !== '' && $validator->isValid($this->getSentCc(), new RFCValidation())) $message->setCc($this->getSentCc());
-            if ($this->getSentBcc() !== '' && $validator->isValid($this->getSentBcc(), new RFCValidation())) $message->setBcc($this->getSentBcc());
-            if ($this->getReplyTo() !== '' && $validator->isValid($this->getReplyTo(), new RFCValidation())) $message->setReplyTo($this->getReplyTo());
-
-            //Sends email
-            $this->mailer->send($message);
-        }
-    }
-
-
-
     /**
      * Get id
      *
@@ -141,29 +106,6 @@ class Email
     public function getId()
     {
         return $this->id;
-    }
-
-
-    /**
-     * Set mailer
-     *
-     * @return Email
-     */
-    public function setMailer($mailer)
-    {
-        $this->mailer = $mailer;
-
-        return $this;
-    }
-
-    /**
-     * Get mailer
-     *
-     * @return object
-     */
-    public function getMailer()
-    {
-        return $this->mailer;
     }
 
     /**
@@ -363,6 +305,4 @@ class Email
     {
         return $this->ip;
     }
-
 }
-
