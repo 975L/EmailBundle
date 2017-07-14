@@ -110,8 +110,6 @@ In your Controller file add this code to create, insert in DB and send your emai
 <?php
 // src/Controller/AnyController.php
 
-use c975L\EmailBundle\Entity\Email;
-
 class AnyController extends Controller
 {
     public function anyFunction(Request $request)
