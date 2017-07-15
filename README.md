@@ -55,6 +55,7 @@ Then, in the `app/config.yml` file of your project, define data for SwiftMailer,
 ```yml
 #Swiftmailer Configuration
 swiftmailer:
+    database_driver: "%database_driver%"
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
     username:  "%mailer_user%"
@@ -66,7 +67,7 @@ swiftmailer:
 #Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   "%database_driver%"
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -86,6 +87,7 @@ Then add the correct values in the `parameters.yml`.
 
 ```yml
 parameters:
+    database_driver: pdo_mysql
     database_host: localhost
     database_port: 80
     database_name: database_name

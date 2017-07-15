@@ -9,7 +9,6 @@
 
 namespace c975L\EmailBundle\Service;
 
-use Doctrine\ORM\EntityManager;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use c975L\EmailBundle\Entity\Email;
@@ -19,7 +18,7 @@ class EmailService
     private $mailer;
     private $em;
 
-    public function __construct(\Swift_Mailer $mailer, EntityManager $em)
+    public function __construct(\Swift_Mailer $mailer, \Doctrine\ORM\EntityManagerInterface $em)
     {
         $this->mailer = $mailer;
         $this->em = $em;

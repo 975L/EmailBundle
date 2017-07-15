@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6.1
+------
+Change type-hint "EntityManager" to "\Doctrine\ORM\EntityManagerInterface"
+
 v1.6
 ----
 - Set saving in database as an option (15/07/2017)
