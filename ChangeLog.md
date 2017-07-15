@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6
+----
+- Set saving in database as an option (15/07/2017)
+
 v1.5.1
 ------
 - Update of README.md (14/07/2017)

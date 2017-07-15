@@ -3,7 +3,7 @@ EmailBundle
 
 EmailBundle does the following:
 
-- Stores email in a database,
+- Stores email in a database as an option,
 - Sends email using SwiftMailer.
 
 [Email Bundle dedicated web page](https://975l.com/en/pages/email-bundle).
@@ -136,7 +136,7 @@ class AnyController extends Controller
 
         //Sends email
         $emailService = $this->get(\c975L\EmailBundle\Service\EmailService::class);
-        $emailService->send($emailData);
+        $emailService->send($emailData, [saveDatabase ? true|false(default)]);
 
         // ...
     }

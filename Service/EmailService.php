@@ -26,7 +26,7 @@ class EmailService
     }
 
     //Creates and sends the email
-    public function send($emailData)
+    public function send($emailData, $saveDatabase = false)
     {
         //Creates email
         $email = new Email();
@@ -49,13 +49,14 @@ class EmailService
             if ($email->getReplyTo() !== '' && $validator->isValid($email->getReplyTo(), new RFCValidation())) $message->setReplyTo($email->getReplyTo());
         }
 
-        //Persists Email in DB
-        $this->em->persist($email);
-
         //Sends email
         $this->mailer->send($message);
 
-        //Flush DB
-        $this->em->flush();
+        //Persists Email in DB
+        if ($saveDatabase === true) {
+            $this->em->persist($email);
+            //Flush DB
+            $this->em->flush();
+        }
     }
 }
