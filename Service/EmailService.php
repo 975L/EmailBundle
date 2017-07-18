@@ -43,9 +43,15 @@ class EmailService
                 ->setContentType('text/html');
 
             //Adds other address
-            if ($email->getSentCc() !== '' && $validator->isValid($email->getSentCc(), new RFCValidation())) $message->setCc($email->getSentCc());
-            if ($email->getSentBcc() !== '' && $validator->isValid($email->getSentBcc(), new RFCValidation())) $message->setBcc($email->getSentBcc());
-            if ($email->getReplyTo() !== '' && $validator->isValid($email->getReplyTo(), new RFCValidation())) $message->setReplyTo($email->getReplyTo());
+            if ($email->getSentCc() !== '' && $validator->isValid($email->getSentCc(), new RFCValidation())) {
+                $message->setCc($email->getSentCc());
+            }
+            if ($email->getSentBcc() !== '' && $validator->isValid($email->getSentBcc(), new RFCValidation())) {
+                $message->setBcc($email->getSentBcc());
+            }
+            if ($email->getReplyTo() !== '' && $validator->isValid($email->getReplyTo(), new RFCValidation())) {
+                $message->setReplyTo($email->getReplyTo());
+            }
         }
 
         //Sends email

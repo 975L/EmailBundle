@@ -1,5 +1,11 @@
 # Changelog
 
+v1.6.2
+------
+- Run PHP CS-Fixer (18/07/2017)
+- Update of composer php version (18/07/2017)
+- Update travis.yml
+
 v1.6.1
 ------
 Change type-hint "EntityManager" to "\Doctrine\ORM\EntityManagerInterface"
