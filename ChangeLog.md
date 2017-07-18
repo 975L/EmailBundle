@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6.4
+------
+- Remove of .travis.yml as tests have to be defined before
+
 v1.6.3
 ------
 - Rename .travis.yml (18/07/2017)
