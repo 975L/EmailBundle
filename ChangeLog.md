@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6.3
+------
+- Rename .travis.yml (18/07/2017)
+
 v1.6.2
 ------
 - Run PHP CS-Fixer (18/07/2017)
