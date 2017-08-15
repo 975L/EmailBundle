@@ -43,7 +43,7 @@ CREATE TABLE `emails_archives` (
   `body` text,
   `ip` varchar(48) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=ARCHIVE DEFAULT CHARSET=utf8mb4;
 */
 
 

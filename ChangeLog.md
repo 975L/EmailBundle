@@ -1,5 +1,7 @@
 # Changelog
 
+- Change MySql engine for `emails_archives` table to ARCHIVE (15/08/2017)
+
 v1.6.4
 ------
 - Remove of .travis.yml as tests have to be defined before
