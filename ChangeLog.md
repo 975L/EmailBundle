@@ -1,6 +1,10 @@
 # Changelog
 
+v1.7
+----
 - Change MySql engine for `emails_archives` table to ARCHIVE (15/08/2017)
+- Changes in `README.md` (16/08/2017)
+- Move of send message action inside the if for email validation (24/09/2017)
 
 v1.6.4
 ------

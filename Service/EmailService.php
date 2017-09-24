@@ -42,7 +42,7 @@ class EmailService
                 ->setBody($email->getBody())
                 ->setContentType('text/html');
 
-            //Adds other address
+            //Adds other addresses
             if ($email->getSentCc() !== '' && $validator->isValid($email->getSentCc(), new RFCValidation())) {
                 $message->setCc($email->getSentCc());
             }
@@ -52,16 +52,16 @@ class EmailService
             if ($email->getReplyTo() !== '' && $validator->isValid($email->getReplyTo(), new RFCValidation())) {
                 $message->setReplyTo($email->getReplyTo());
             }
-        }
 
-        //Sends email
-        $this->mailer->send($message);
+            //Sends email
+            $this->mailer->send($message);
 
-        //Persists Email in DB
-        if ($saveDatabase === true) {
-            $this->em->persist($email);
-            //Flush DB
-            $this->em->flush();
+            //Persists Email in DB
+            if ($saveDatabase === true) {
+                $this->em->persist($email);
+                //Flush DB
+                $this->em->flush();
+            }
         }
     }
 }

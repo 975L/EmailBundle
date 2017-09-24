@@ -50,7 +50,7 @@ class AppKernel extends Kernel
 
 Step 3: Configure the Bundles
 -----------------------------
-Then, in the `app/config.yml` file of your project, define data for SwiftMailer, Doctrine and `sentFrom` as the email address used to send emails.
+Then, in the `app/config.yml` file of your project, define the following:
 
 ```yml
 #Swiftmailer Configuration
@@ -81,6 +81,7 @@ doctrine:
 
 #EmailBundle
 c975_l_email:
+    #Email address used to send emails
     sentFrom: 'contact@example.com'
 ```
 Then add the correct values in the `parameters.yml`.
