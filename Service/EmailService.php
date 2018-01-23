@@ -10,6 +10,8 @@
 namespace c975L\EmailBundle\Service;
 
 use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\DNSCheckValidation;
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use c975L\EmailBundle\Entity\Email;
 
@@ -34,7 +36,13 @@ class EmailService
 
         //Validates addresses
         $validator = new EmailValidator();
-        if ($validator->isValid($email->getSentTo(), new RFCValidation())) {
+        $multipleValidations = new MultipleValidationWithAnd([
+            new RFCValidation(),
+            new DNSCheckValidation()
+        ]);
+
+        if ($validator->isValid($email->getSentTo(), $multipleValidations)) {
+            $send = true;
             $message = (new \Swift_Message())
                 ->setFrom($email->getSentFrom())
                 ->setSubject($email->getSubject())
@@ -42,25 +50,32 @@ class EmailService
                 ->setBody($email->getBody())
                 ->setContentType('text/html');
 
-            //Adds other addresses
-            if ($email->getSentCc() !== '' && $validator->isValid($email->getSentCc(), new RFCValidation())) {
+            //SentCC
+            if ($email->getSentCc() !== '' && $validator->isValid($email->getSentCc(), $multipleValidations)) {
                 $message->setCc($email->getSentCc());
             }
-            if ($email->getSentBcc() !== '' && $validator->isValid($email->getSentBcc(), new RFCValidation())) {
+            //Sent Bcc
+            if ($email->getSentBcc() !== '' && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
                 $message->setBcc($email->getSentBcc());
             }
-            if ($email->getReplyTo() !== '' && $validator->isValid($email->getReplyTo(), new RFCValidation())) {
-                $message->setReplyTo($email->getReplyTo());
+            //Tests ReplyTo to not send email if not passed, to avoid spam
+            if ($email->getReplyTo() !== '') {
+                if ($validator->isValid($email->getReplyTo(), $multipleValidations)) {
+                    $message->setReplyTo($email->getReplyTo());
+                } else {
+                    $send = false;
+                }
             }
 
             //Sends email
-            $this->mailer->send($message);
+            if ($send === true) {
+                $this->mailer->send($message);
 
-            //Persists Email in DB
-            if ($saveDatabase === true) {
-                $this->em->persist($email);
-                //Flush DB
-                $this->em->flush();
+                //Persists Email in DB
+                if ($saveDatabase === true) {
+                    $this->em->persist($email);
+                    $this->em->flush();
+                }
             }
         }
     }

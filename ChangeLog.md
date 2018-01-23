@@ -1,5 +1,10 @@
 # Changelog
 
+V1.8
+----
+- Unallow sending email if ReplyTo address is not validated, to avoid spam (23/01/2018)
+- Added multiple validations (RFC + DNS) (23/01/2018)
+
 v1.7
 ----
 - Change MySql engine for `emails_archives` table to ARCHIVE (15/08/2017)
