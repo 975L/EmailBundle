@@ -1,6 +1,11 @@
 # Changelog
 
-V1.8
+v1.9
+----
+- Changes in `README.md` (02/02/2018)
+- Add possibility to add attachment (02/02/2018)
+
+v1.8
 ----
 - Unallow sending email if ReplyTo address is not validated, to avoid spam (23/01/2018)
 - Added multiple validations (RFC + DNS) (23/01/2018)

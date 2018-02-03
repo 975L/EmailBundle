@@ -67,6 +67,12 @@ class EmailService
                 }
             }
 
+            //Attach file
+            if (array_key_exists('attach', $emailData) && $emailData['attach'] != '' && $emailData['attach'] != null) {
+                $attachment = new \Swift_Attachment($emailData['attach'][0], $emailData['attach'][1], $emailData['attach'][2]);
+                $message->attach($attachment);
+            }
+
             //Sends email
             if ($send === true) {
                 $this->mailer->send($message);
