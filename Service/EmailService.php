@@ -20,7 +20,10 @@ class EmailService
     private $mailer;
     private $em;
 
-    public function __construct(\Swift_Mailer $mailer, \Doctrine\ORM\EntityManagerInterface $em)
+    public function __construct(
+        \Swift_Mailer $mailer,
+        \Doctrine\ORM\EntityManagerInterface $em
+        )
     {
         $this->mailer = $mailer;
         $this->em = $em;

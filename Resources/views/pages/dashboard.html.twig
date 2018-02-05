@@ -1,0 +1,57 @@
+{% extends "@c975LEmail/layout.html.twig" %}
+{% trans_default_domain 'email' %}
+{% set title = 'label.dashboard'|trans %}
+
+{% block email_content %}
+{# Toolbar #}
+    {{ toolbar|raw }}
+
+{# List of emails and actions #}
+    <div class="text-center">
+        <h2>
+            {{ 'text.list_emails'|trans }}
+        </h2>
+        <table class="table table-hover table-condensed table-responsive">
+            <thead>
+                <tr>
+                    <th class="text-center">{{ knp_pagination_sortable(emails, 'Id', 'e.id') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+                    <th class="text-center"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;{{ knp_pagination_sortable(emails, 'label.subject'|trans, 'subject') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+                    <th class="text-center">{{ knp_pagination_sortable(emails, 'label.sent_to'|trans, 'sentTo') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+                    <th class="text-center">{{ knp_pagination_sortable(emails, 'label.sent_date'|trans, 'dateSent') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in emails %}
+                    <tr>
+{# Id #}
+                        <td class="text-center">
+                            {{ email.id }}
+                        </td>
+{# Subject & Display #}
+                        <td class="text-center">
+                            <a href="{{ path('email_display', {'id': email.id}) }}" title="{{ 'label.display'|trans }}">{{ email.subject }}</a>
+                        </td>
+{# Sent to #}
+                        <td class="text-center">
+                            {{ email.sentTo }}
+                        </td>
+{# Date sent #}
+                        <td class="text-center">
+                            {{ email.dateSent|localizeddate('medium', 'medium') }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{# No emails #}
+        {% if emails.getTotalItemCount == 0 %}
+            <p class="alert alert-info">
+                {{ 'label.no_emails'|trans }}
+            </p>
+        {% endif %}
+{# Pagination #}
+        <div class="navigation text-center">
+            {{ knp_pagination_render(emails) }}
+        </div>
+    </div>
+{% endblock %}

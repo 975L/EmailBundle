@@ -1,5 +1,13 @@
 # Changelog
 
+v1.10
+-----
+- Change about composer download in `README.md` (04/02/2018)
+- Add support in `composer.json`+ use of ^ for versions request (04/02/2018)
+- Add Route + view to visualize emails sent (05/02/2018)
+- Add of c975L/ToolbarBundle (05/02/2018)
+- Updated  `README.md` (05/02/2018)
+
 v1.9
 ----
 - Changes in `README.md` (02/02/2018)
@@ -28,11 +36,11 @@ v1.6.2
 ------
 - Run PHP CS-Fixer (18/07/2017)
 - Update of composer php version (18/07/2017)
-- Update travis.yml
+- Update travis.yml (18/07/2017)
 
 v1.6.1
 ------
-Change type-hint "EntityManager" to "\Doctrine\ORM\EntityManagerInterface"
+Change type-hint "EntityManager" to "\Doctrine\ORM\EntityManagerInterface" (18/07/2017)
 
 v1.6
 ----
@@ -58,7 +66,7 @@ v1.4
 ----
 - Renaming of file Resources/sql/TableCreation.sql to emails.sql (13/06/2017)
 - Add information about SwiftMailer (04/07/2017)
-- Update of requirements in `composer.json`
+- Update of requirements in `composer.json` (04/07/2017)
 
 v1.3
 ----
@@ -83,7 +91,7 @@ v1.1.1
 v1.1
 ----
 - Add of content in README.md (05/06/2017)
-- Add of configuration parameter
+- Add of configuration parameter (05/06/2017)
 
 v1.0.1
 ------

@@ -4,5 +4,8 @@ services:
         autoconfigure: true
         public: true
 
+    c975L\EmailBundle\Controller\:
+        resource: '../../Controller/*'
+
     c975L\EmailBundle\Service\:
         resource: '../../Service/*'

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="email.en.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>label.subject</source>
+                <target>Subject</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>label.sent_date</source>
+                <target>Sent date</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>label.dashboard</source>
+                <target>Dashboard</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>label.help</source>
+                <target>Help</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>label.display</source>
+                <target>Display</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>text.list_emails</source>
+                <target>List of emails</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>label.no_emails</source>
+                <target>No emails</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>label.sent_to</source>
+                <target>Sent to</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>label.message</source>
+                <target>Message</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

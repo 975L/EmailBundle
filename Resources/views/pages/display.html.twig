@@ -1,0 +1,34 @@
+{% extends "@c975LEmail/layout.html.twig" %}
+{% trans_default_domain 'email' %}
+{% set title = 'label.display'|trans %}
+
+{% block email_content %}
+{# Toolbar #}
+    {{ toolbar|raw }}
+
+{# List of emails and actions #}
+    <div class="row">
+{# Id #}
+        <p>
+            Id : <strong>{{ email.id }}</strong>
+        </p>
+{# Subject #}
+        <p>
+            {{ 'label.subject'|trans }} : <strong>{{ email.subject }}</strong>
+        </p>
+{# Sent to #}
+        <p>
+            {{ 'label.sent_to'|trans }} : <strong>{{ email.sentTo }}</strong>
+        </p>
+{# Date sent #}
+        <p>
+            {{ 'label.sent_date'|trans }} : <strong>{{ email.dateSent|localizeddate('medium', 'medium') }}</strong>
+        </p>
+    </div>
+{# Message #}
+    <div class="row">
+        {{ 'label.message'|trans }}
+        <br />
+        {{ email.body|raw }}
+    </div>
+{% endblock %}

@@ -49,9 +49,22 @@ Then, in the `app/config.yml` file of your project, define the following:
 c975_l_email:
     #Email address used to send emails
     sentFrom: 'contact@example.com'
+    #User's role needed to enable access to view emails sent
+    roleNeeded: 'ROLE_ADMIN'
 ```
 
-Step 4: Create MySql table
+Step 4: Enable the Routes
+-------------------------
+Then, enable the routes by adding them to the `app/config/routing.yml` file of your project:
+
+```yml
+c975_l_email:
+    resource: "@c975LEmailBundle/Controller/"
+    type:     annotation
+    prefix:   /
+```
+
+Step 5: Create MySql table
 --------------------------
 Use `/Resources/sql/emails.sql` to create the table `emails`. The `DROP TABLE` is commented to avoid dropping by mistake.
 
@@ -96,3 +109,24 @@ class AnyController extends Controller
     }
 }
 ```
+
+Use of dashboard and display messages sent
+------------------------------------------
+You can see the emails sent via the dashboard.
+It is strongly recommended to use the [Override Templates from Third-Party Bundles feature](http://symfony.com/doc/current/templating/overriding.html) to integrate fully with your site.
+
+For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the file `layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
+
+In `layout.html.twig`, it will mainly consist to extend your layout and define specific variables, i.e. :
+```twig
+{% extends 'layout.html.twig' %}
+
+{# Defines specific variables #}
+{% set title = 'Email (' ~ title ~ ')' %}
+
+{% block content %}
+    <div class="container">
+        {% block email_content %}
+        {% endblock %}
+    </div>
+{% endblock %}

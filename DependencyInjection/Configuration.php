@@ -23,6 +23,9 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('sentFrom')
                 ->end()
+                ->scalarNode('roleNeeded')
+                    ->defaultValue('ROLE_ADMIN')
+                ->end()
             ->end()
         ;
 

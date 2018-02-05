@@ -15,7 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
  * Email
  *
  * @ORM\Table(name="emails")
- * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
 class Email

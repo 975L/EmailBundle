@@ -32,5 +32,6 @@ class c975LEmailExtension extends Extension
         $processedConfig = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('c975_l_email.sentFrom', $processedConfig['sentFrom']);
+        $container->setParameter('c975_l_email.roleNeeded', $processedConfig['roleNeeded']);
     }
 }
