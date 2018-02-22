@@ -129,7 +129,7 @@ class EmailController extends Controller
             ));
             $toolbar = $this->forward('c975L\ToolbarBundle\Controller\ToolbarController::displayAction', array(
                 'tools'  => $tools,
-                'dashboard'  => 'events',
+                'dashboard'  => 'email',
             ))->getContent();
 
             //Returns the help

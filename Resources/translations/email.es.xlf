@@ -11,30 +11,18 @@
                 <target>Fecha de envío</target>
             </trans-unit>
             <trans-unit id="3">
-                <source>label.dashboard</source>
-                <target>Tablero</target>
-            </trans-unit>
-            <trans-unit id="4">
-                <source>label.help</source>
-                <target>Ayuda</target>
-            </trans-unit>
-            <trans-unit id="5">
-                <source>label.display</source>
-                <target>Visualización</target>
-            </trans-unit>
-            <trans-unit id="6">
                 <source>text.list_emails</source>
                 <target>Lista de emails</target>
             </trans-unit>
-            <trans-unit id="7">
+            <trans-unit id="4">
                 <source>label.no_emails</source>
                 <target>No emails</target>
             </trans-unit>
-            <trans-unit id="8">
+            <trans-unit id="5">
                 <source>label.sent_to</source>
                 <target>Enviado a</target>
             </trans-unit>
-            <trans-unit id="9">
+            <trans-unit id="6">
                 <source>label.message</source>
                 <target>Mensaje</target>
             </trans-unit>

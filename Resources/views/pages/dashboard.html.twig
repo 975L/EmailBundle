@@ -1,6 +1,6 @@
 {% extends "@c975LEmail/layout.html.twig" %}
 {% trans_default_domain 'email' %}
-{% set title = 'label.dashboard'|trans %}
+{% set title = 'label.dashboard'|trans({}, 'toolbar') %}
 
 {% block email_content %}
 {# Toolbar #}
@@ -14,10 +14,10 @@
         <table class="table table-hover table-condensed table-responsive">
             <thead>
                 <tr>
-                    <th class="text-center">{{ knp_pagination_sortable(emails, 'Id', 'e.id') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th class="text-center"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;{{ knp_pagination_sortable(emails, 'label.subject'|trans, 'subject') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th class="text-center">{{ knp_pagination_sortable(emails, 'label.sent_to'|trans, 'sentTo') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
-                    <th class="text-center">{{ knp_pagination_sortable(emails, 'label.sent_date'|trans, 'dateSent') }}&nbsp;<span class="glyphicon glyphicon-sort"></span></th>
+                    <th class="text-center">{{ knp_pagination_sortable(emails, 'Id', 'e.id') }}&nbsp;<span class="fas fa-sort"></span></th>
+                    <th class="text-center"><span class="fas fa-eye"></span>&nbsp;{{ knp_pagination_sortable(emails, 'label.subject'|trans, 'subject') }}&nbsp;<span class="fas fa-sort"></span></th>
+                    <th class="text-center">{{ knp_pagination_sortable(emails, 'label.sent_to'|trans, 'sentTo') }}&nbsp;<span class="fas fa-sort"></span></th>
+                    <th class="text-center">{{ knp_pagination_sortable(emails, 'label.sent_date'|trans, 'dateSent') }}&nbsp;<span class="fas fa-sort"></span></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                         </td>
 {# Subject & Display #}
                         <td class="text-center">
-                            <a href="{{ path('email_display', {'id': email.id}) }}" title="{{ 'label.display'|trans }}">{{ email.subject }}</a>
+                            <a href="{{ path('email_display', {'id': email.id}) }}" title="{{ 'label.display'|trans({}, 'toolbar') }}">{{ email.subject }}</a>
                         </td>
 {# Sent to #}
                         <td class="text-center">

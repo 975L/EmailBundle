@@ -1,5 +1,13 @@
 # Changelog
 
+v1.11
+-----
+- Removed translations taken from c975L/ToolbarBundle (22/02/2018)
+- Added help pages (22/02/2018)
+- Suppressed tool in tools.html.twig as it was coming from another project (22/02/2018)
+- Added templates and styles for email to be used by other dashboards, for user to have only one place to overrde (22/02/2018)
+- Abandoned Glyphicon and replaced by fontawesome (22/02/2018)
+
 v1.10
 -----
 - Change about composer download in `README.md` (04/02/2018)

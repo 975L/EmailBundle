@@ -1,6 +1,6 @@
 {% extends "@c975LEmail/layout.html.twig" %}
 {% trans_default_domain 'email' %}
-{% set title = 'label.display'|trans %}
+{% set title = 'label.display'|trans({}, 'toolbar') %}
 
 {% block email_content %}
 {# Toolbar #}

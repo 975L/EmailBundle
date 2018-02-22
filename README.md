@@ -4,7 +4,9 @@ EmailBundle
 EmailBundle does the following:
 
 - Stores email in a database as an option,
-- Sends email using  [SwiftMailer](https://github.com/symfony/swiftmailer-bundle).
+- Sends email using  [SwiftMailer](https://github.com/symfony/swiftmailer-bundle),
+- Allows user with good ROLE to see emails sent,
+- Defines a template for emails that should be overriden to inegrate fully with website.
 
 [Email Bundle dedicated web page](https://975l.com/en/pages/email-bundle).
 
@@ -115,11 +117,12 @@ Use of dashboard and display messages sent
 You can see the emails sent via the dashboard.
 It is strongly recommended to use the [Override Templates from Third-Party Bundles feature](http://symfony.com/doc/current/templating/overriding.html) to integrate fully with your site.
 
-For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the file `layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
+For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the files `layout.html.twig` and `emails/layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
 
-In `layout.html.twig`, it will mainly consist to extend your layout and define specific variables, i.e. :
+In `layout.html.twig` and `emails/layout.html.twig`, it will mainly consist to extend your layouts and define specific variables, i.e. :
 ```twig
 {% extends 'layout.html.twig' %}
+{# or extends 'emails/layout.html.twig' #}
 
 {# Defines specific variables #}
 {% set title = 'Email (' ~ title ~ ')' %}
@@ -130,3 +133,4 @@ In `layout.html.twig`, it will mainly consist to extend your layout and define s
         {% endblock %}
     </div>
 {% endblock %}
+```
