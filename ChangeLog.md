@@ -1,5 +1,9 @@
 # Changelog
 
+v1.12
+-----
+- Added c957L/IncludeLibrary to include libraries in layout.html.twig (27/02/2018)
+
 v1.11
 -----
 - Removed translations taken from c975L/ToolbarBundle (22/02/2018)
