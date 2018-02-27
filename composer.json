@@ -27,7 +27,8 @@
         "doctrine/doctrine-cache-bundle": "^1",
         "doctrine/orm": "^2",
         "knplabs/knp-paginator-bundle": "^2",
-        "c975l/toolbar-bundle": "^1"
+        "c975l/toolbar-bundle": "^1",
+        "c975l/includelibrary-bundle": "^1"
     },
     "minimum-stability": "dev",
     "autoload": {
