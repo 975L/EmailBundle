@@ -1,5 +1,9 @@
 # Changelog
 
+v1.12.2
+-------
+- Removed the "|raw" for `toolbar_button` call as safe html is now sent (01/03/2018)
+
 v1.12.1
 -------
 - Added c957L/IncludeLibrary ton `composer.json` (27/02/2018)
