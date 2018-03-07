@@ -71,7 +71,7 @@ Step 5: Create MySql table
 --------------------------
 Use `/Resources/sql/emails.sql` to create the table `emails`. The `DROP TABLE` is commented to avoid dropping by mistake.
 
-You also have the possibility to create another table to archive emails using a MySql Procedure, see in `/Resources/sql/emails.sql` to un-comment the creation of these.
+You also have the possibility to create another table to archive emails using a MySql Procedure, see in `/Resources/sql/emails.sql` to uncomment the creation of these.
 
 How to use
 ----------
@@ -89,11 +89,14 @@ class AnyController extends Controller
         //Build your email
         $bodyEmail = 'emails/XXX.html.twig';
         $bodyData = array(
-            //Whatever data needed for the template
+            'email' => $this->getParameter('c975_l_email.sentFrom'),//Optional but used to display information in the template
+            'site' => $this->getParameter('c975_l_payment.site'),//Optional but used to display information in the template
+            //Other data needed for your template
+            //...
             );
         $body = $this->renderView($bodyEmail, $bodyData);
         $emailData = array(
-            'subject' => 'subjectEmail',
+            'subject' => 'YOUR_SUBJECT',
             'sentFrom' => $this->getParameter('c975_l_email.sentFrom'),
             'sentTo' => 'contact@example.com',
             'sentCc' => 'contact@example.com', //optional
@@ -115,14 +118,60 @@ class AnyController extends Controller
 }
 ```
 
+Email messages
+--------------
+To avoid too much overiding and keep it simple to use, it's a bit tricky to understand the setup.
+
+You **must** override `Resources/views/emails/layout.html.twig` with `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` as `layout.html.twig` is an empty shell extended by other bundles.
+
+Insert the following code in the overriden file:
+
+EmailBundle use the following variables to display information through the email template. If you don't set them, they will be ignored.
+```twig
+{% extends "@c975LEmail/emails/fullLayout.html.twig" %}
+
+{% set site = 'YOUR_SITE' %}
+{% set author = 'AUTHOR' %}
+{% set firstOnlineDate = 'YYYY-MM-DD' %}
+{% set email = 'YOUR_EMAIL' %}
+{% set logo = absolute_url(asset('images/og-image.png')) %}
+```
+
+Overide a block
+---------------
+
+You can overide any block in the template, to do so, simply add the following in your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`:
+```twig
+{# Container #}
+{% block container %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+```
+Have a look at `Resources/views/emails/fullLayout.html.twig`, to see all available blocks.
+
+Disable a block
+---------------
+To disable a block, simply add the following in your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`:
+```twig
+{% block logo %}
+{% endblock %}
+```
+Have a look at `Resources/views/layout.html.twig`, to see all available blocks.
+
+Footer template
+---------------
+You should override the template `Resources/views/emails/footer.html.twig` in your `app/Resources/c975LEmailBundle/views/emails/footer.html.twig` and indicate there all the data you need to display at the bottom of sent email.
+
 Use of dashboard and display messages sent
 ------------------------------------------
 You can see the emails sent via the dashboard.
-It is strongly recommended to use the [Override Templates from Third-Party Bundles feature](http://symfony.com/doc/current/templating/overriding.html) to integrate fully with your site.
 
-For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the files `layout.html.twig` and `emails/layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
+For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the file `layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
 
-In `layout.html.twig` and `emails/layout.html.twig`, it will mainly consist to extend your layouts and define specific variables, i.e. :
+In `layout.html.twig`, it will mainly consist to extend your layout and define specific variables, i.e. :
 ```twig
 {% extends 'layout.html.twig' %}
 {# or extends 'emails/layout.html.twig' #}
@@ -131,9 +180,7 @@ In `layout.html.twig` and `emails/layout.html.twig`, it will mainly consist to e
 {% set title = 'Email (' ~ title ~ ')' %}
 
 {% block content %}
-    <div class="container">
-        {% block email_content %}
-        {% endblock %}
-    </div>
+    {% block email_content %}
+    {% endblock %}
 {% endblock %}
 ```

@@ -26,6 +26,28 @@
                 <source>label.message</source>
                 <target>Mensaje</target>
             </trans-unit>
+            <trans-unit id="7">
+                <source>text.email_sent_by</source>
+                <target><![CDATA[Este correo electrónico fue enviado por <strong>%site%</strong>.]]></target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>label.hello</source>
+                <target>Hola</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>text.thanks_confidence</source>
+                <target><![CDATA[¡Gracias por su confianza!
+                        Quedamos a su disposición para cualquier petición.]]></target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>text.no_spam</source>
+                <target><![CDATA[Le recomendamos que guarde nuestra dirección de correo electrónico "%email%" en su libreta de direcciones para que nuestros mensajes de correo electrónico no están clasificados spam.]]></target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>text.regards_team</source>
+                <target><![CDATA[Saludos,
+                        El equipo de %site%]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,5 +1,10 @@
 # Changelog
 
+v1.14
+-----
+- Added missing translations (07/03/2018)
+- Modified `layout.html.twig` to be used like in c975L/SiteBundle, to avoid having to override it (07/03/2018)
+
 v1.13
 -----
 - Added possibility to attach multiple attachments (06/03/2018)
