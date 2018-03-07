@@ -54,15 +54,17 @@ class EmailService
                 ->setContentType('text/html');
 
             //SentCC
-            if ($email->getSentCc() !== '' && $validator->isValid($email->getSentCc(), $multipleValidations)) {
+            if ($email->getSentCc() !== null && $validator->isValid($email->getSentCc(), $multipleValidations)) {
                 $message->setCc($email->getSentCc());
             }
+
             //Sent Bcc
-            if ($email->getSentBcc() !== '' && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
+            if ($email->getSentBcc() !== null && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
                 $message->setBcc($email->getSentBcc());
             }
+
             //Tests ReplyTo to not send email if not passed, to avoid spam
-            if ($email->getReplyTo() !== '') {
+            if ($email->getReplyTo() !== null) {
                 if ($validator->isValid($email->getReplyTo(), $multipleValidations)) {
                     $message->setReplyTo($email->getReplyTo());
                 } else {
@@ -70,10 +72,11 @@ class EmailService
                 }
             }
 
-            //Attach file
-            if (array_key_exists('attach', $emailData) && $emailData['attach'] != '' && $emailData['attach'] != null) {
-                $attachment = new \Swift_Attachment($emailData['attach'][0], $emailData['attach'][1], $emailData['attach'][2]);
-                $message->attach($attachment);
+            //Attach files
+            if (array_key_exists('attach', $emailData) && is_array($emailData['attach'])) {
+                foreach ($emailData['attach'] as $attach) {
+                    $message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
+                }
             }
 
             //Sends email

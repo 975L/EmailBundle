@@ -6,7 +6,8 @@ EmailBundle does the following:
 - Stores email in a database as an option,
 - Sends email using  [SwiftMailer](https://github.com/symfony/swiftmailer-bundle),
 - Allows user with good ROLE to see emails sent,
-- Defines a template for emails that should be overriden to inegrate fully with website.
+- Defines a template for emails that should be overriden to inegrate fully with website,
+- Allows to attach one or multiple files.
 
 [Email Bundle dedicated web page](https://975l.com/en/pages/email-bundle).
 
@@ -99,7 +100,9 @@ class AnyController extends Controller
             'sentBcc' => 'contact@example.com', //optional
             'replyTo' => 'contact@example.com', //optional
             'body' => $body,
-            'attach' => array($data, $filename, $contentType), //optional
+            'attach' => array(
+                array($data, $filename, $contentType)
+                ), //optional
             'ip' => $request->getClientIp(), //optional
             );
 

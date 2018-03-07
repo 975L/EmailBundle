@@ -1,5 +1,10 @@
 # Changelog
 
+v1.13
+-----
+- Added possibility to attach multiple attachments (06/03/2018)
+- Changed returned values from getters (07/03/2018)
+
 v1.12.2
 -------
 - Removed the "|raw" for `toolbar_button` call as safe html is now sent (01/03/2018)

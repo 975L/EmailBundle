@@ -172,7 +172,7 @@ class Email
      */
     public function getSentFrom()
     {
-        return $this->sentFrom;
+        return $this->sentFrom == '' ? null : $this->sentFrom;
     }
 
     /**
@@ -194,7 +194,7 @@ class Email
      */
     public function getSentTo()
     {
-        return $this->sentTo;
+        return $this->sentTo == '' ? null : $this->sentTo;
     }
 
     /**
@@ -216,7 +216,7 @@ class Email
      */
     public function getSentCc()
     {
-        return $this->sentCc;
+        return $this->sentCc == '' ? null : $this->sentCc;
     }
 
     /**
@@ -260,7 +260,7 @@ class Email
      */
     public function getReplyTo()
     {
-        return $this->replyTo;
+        return $this->replyTo == '' ? null : $this->replyTo;
     }
 
     /**
