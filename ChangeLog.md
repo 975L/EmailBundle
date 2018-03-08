@@ -1,5 +1,10 @@
 # Changelog
 
+v1.14.1
+-------
+- Updated `README.md` with an example of email (08/03/2018)
+- Added block hello (08/03/2018)
+
 v1.14
 -----
 - Added missing translations (07/03/2018)

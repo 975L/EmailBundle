@@ -64,13 +64,17 @@
             {% endblock %}
 {# Container #}
             {% block container %}
-{# Hello #}
-                <p>
-                    {{ 'label.hello'|trans }},
-                    <br />
-                </p>
 {# Content #}
-                {% block email_content %}
+                {% block content %}
+{# Hello #}
+                    {% block hello %}
+                        <p>
+                            {{ 'label.hello'|trans }},
+                            <br />
+                        </p>
+                    {% endblock %}
+                    {% block email_content %}
+                    {% endblock %}
                 {% endblock %}
             {% endblock %}
 {# Footer #}

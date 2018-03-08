@@ -75,7 +75,22 @@ You also have the possibility to create another table to archive emails using a 
 
 How to use
 ----------
-In your Controller file add this code to create, insert in DB and send your email:
+Create a Twig template i.e. `app/Resources/views/emails/description.html.twig` with this content:
+
+```twig
+{# If you want to use the template provided by c975LEmailBundle you have to extend its layout #}
+{% extends "@c975LEmail/emails/layout.html.twig" %}
+
+{% block email_content %}
+    <p>
+        {{ 'label.description'|trans }} : <strong>{{ object.description }}</strong>
+    </p>
+{# You can include files #}
+    {% include 'YOUR_FILE_PATH' %}
+{% endblock %}
+```
+
+Then in your Controller, add this code to create, insert in DB and send your email:
 ```php
 <?php
 // src/Controller/AnyController.php
@@ -87,14 +102,11 @@ class AnyController extends Controller
         // ...
 
         //Build your email
-        $bodyEmail = 'emails/XXX.html.twig';
-        $bodyData = array(
+        $body = $this->renderView('emails/description.html.twig', array(
             'email' => $this->getParameter('c975_l_email.sentFrom'),//Optional but used to display information in the template
             'site' => $this->getParameter('c975_l_payment.site'),//Optional but used to display information in the template
             //Other data needed for your template
-            //...
-            );
-        $body = $this->renderView($bodyEmail, $bodyData);
+            ));
         $emailData = array(
             'subject' => 'YOUR_SUBJECT',
             'sentFrom' => $this->getParameter('c975_l_email.sentFrom'),
@@ -122,32 +134,36 @@ Email messages
 --------------
 To avoid too much overiding and keep it simple to use, it's a bit tricky to understand the setup.
 
-You **must** override `Resources/views/emails/layout.html.twig` with `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` as `layout.html.twig` is an empty shell extended by other bundles.
+You **must** override `Resources/views/emails/layout.html.twig` with `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` as `@c975lEmail/emails/layout.html.twig` is an empty shell extended by other bundles (see example above).
 
-Insert the following code in the overriden file:
+Insert the following code in the overriden file `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`:
 
 EmailBundle use the following variables to display information through the email template. If you don't set them, they will be ignored.
 ```twig
 {% extends "@c975LEmail/emails/fullLayout.html.twig" %}
 
-{% set site = 'YOUR_SITE' %}
 {% set author = 'AUTHOR' %}
 {% set firstOnlineDate = 'YYYY-MM-DD' %}
-{% set email = 'YOUR_EMAIL' %}
 {% set logo = absolute_url(asset('images/og-image.png')) %}
+
+{# If you want to wrap the email content with a special div, class, etc., just override the block like this #}
+{% block content %}
+    <div class="container">
+        {% block hello %}
+            {{ parent() }}
+        {% endblock %}
+        {% block email_content %}
+        {% endblock %}
+    </div>
+{% endblock %}
 ```
 
 Overide a block
 ---------------
-
-You can overide any block in the template, to do so, simply add the following in your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`:
+You can overide any block in the template, to do so, simply add the following in your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`, you can still use the `{{ parent() }}` Twig function:
 ```twig
-{# Container #}
-{% block container %}
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
+{% block noSpam %}
+    {# YOUR_OWN_TEXT #}
 {% endblock %}
 ```
 Have a look at `Resources/views/emails/fullLayout.html.twig`, to see all available blocks.
