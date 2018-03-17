@@ -1,5 +1,10 @@
 # Changelog
 
+v1.14.2
+-------
+- Modified copyright in `fullLayout.html.twig` (17/03/2018)
+- Moved email + site info from Controller call to Twig template `layout.html.twig` (17/03/2018)
+
 v1.14.1
 -------
 - Updated `README.md` with an example of email (08/03/2018)

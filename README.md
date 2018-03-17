@@ -103,9 +103,7 @@ class AnyController extends Controller
 
         //Build your email
         $body = $this->renderView('emails/description.html.twig', array(
-            'email' => $this->getParameter('c975_l_email.sentFrom'),//Optional but used to display information in the template
-            'site' => $this->getParameter('c975_l_payment.site'),//Optional but used to display information in the template
-            //Other data needed for your template
+            //Data needed for your template
             ));
         $emailData = array(
             'subject' => 'YOUR_SUBJECT',
@@ -142,6 +140,8 @@ EmailBundle use the following variables to display information through the email
 ```twig
 {% extends "@c975LEmail/emails/fullLayout.html.twig" %}
 
+{% set site = 'YOUR_SITE_NAME' %}
+{% set email = 'THE_EMAIL_YOU_SEND_FROM' %} {# Should be the same as the one defined in config.yml > sentFrom #}
 {% set author = 'AUTHOR' %}
 {% set firstOnlineDate = 'YYYY-MM-DD' %}
 {% set logo = absolute_url(asset('images/og-image.png')) %}

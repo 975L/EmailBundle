@@ -4,7 +4,10 @@
 {% if firstOnlineDate is defined %}
     {% set copyright = '© ' ~ firstOnlineDate|date('Y') ~ ' - ' ~  'now'|date('Y') %}
 {% endif %}
-{% if copyright is defined and site is defined %}
+{% if copyright is not defined %}
+    {% set copyright = '© ' ~  'now'|date('Y') %}
+{% endif %}
+{% if site is defined %}
     {% set copyright = copyright ~ ': ' ~ site %}
 {% endif %}
 

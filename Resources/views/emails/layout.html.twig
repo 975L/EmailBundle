@@ -4,6 +4,8 @@
 {#
     {% extends "@c975LEmail/emails/fullLayout.html.twig" %}
 
+    {% set site = 'YOUR_SITE_NAME' %}
+    {% set email = 'THE_EMAIL_YOU_SEND_FROM' %} {# Should be the same as the one defined in config.yml > sentFrom #}
     {% set author = 'AUTHOR' %}
     {% set firstOnlineDate = 'YYYY-MM-DD' %}
     {% set logo = absolute_url(asset('images/og-image.png')) %}
