@@ -1,5 +1,11 @@
 # Changelog
 
+v1.15
+-----
+- Set bold for the name of the site in the signature (30/03/2018)
+- Added boolean return if message has been sent or not (30/03/2018)
+- Modified organisation of `EmailService` (31/03/2018)
+
 v1.14.2
 -------
 - Modified copyright in `fullLayout.html.twig` (17/03/2018)

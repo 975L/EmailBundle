@@ -46,7 +46,7 @@
             <trans-unit id="11">
                 <source>text.regards_team</source>
                 <target><![CDATA[Regards,
-                        The %site% Team]]></target>
+                        The <strong>%site%</strong> Team]]></target>
             </trans-unit>
         </body>
     </file>

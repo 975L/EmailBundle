@@ -89,7 +89,7 @@
                     <br />
                     <br />
                     {% if site is defined %}
-                        {{ 'text.regards_team'|trans({'%site%': site})|nl2br }}
+                        {{ 'text.regards_team'|trans({'%site%': site})|raw|nl2br }}
                         <br />
                     {% endif %}
                 </p>

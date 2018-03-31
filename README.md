@@ -121,7 +121,14 @@ class AnyController extends Controller
 
         //Sends email
         $emailService = $this->get(\c975L\EmailBundle\Service\EmailService::class);
-        $emailService->send($emailData, [saveDatabase ? true|false(default)]);
+        $emailSent = $emailService->send($emailData, [saveDatabase ? true|false(default)]);
+
+        //You can test if email has been sent
+        if ($emailSent === true) {
+            //Do what you need...
+        } else {
+            //Do what you need...
+        }
 
         // ...
     }

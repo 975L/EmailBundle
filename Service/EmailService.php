@@ -44,51 +44,56 @@ class EmailService
             new DNSCheckValidation()
         ]);
 
-        if ($validator->isValid($email->getSentTo(), $multipleValidations)) {
-            $send = true;
-            $message = (new \Swift_Message())
-                ->setFrom($email->getSentFrom())
-                ->setSubject($email->getSubject())
-                ->setTo($email->getSentTo())
-                ->setBody($email->getBody())
-                ->setContentType('text/html');
+        //Creates message
+        $message = new \Swift_Message();
 
-            //SentCC
-            if ($email->getSentCc() !== null && $validator->isValid($email->getSentCc(), $multipleValidations)) {
-                $message->setCc($email->getSentCc());
-            }
+        //Validates SentTo to not send email if not passed, to avoid spam
+        if ($email->getSentTo() !== null && $validator->isValid($email->getSentTo(), $multipleValidations)) {
+            $message->setTo($email->getSentTo());
+        } else {
+            return false;
+        }
 
-            //Sent Bcc
-            if ($email->getSentBcc() !== null && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
-                $message->setBcc($email->getSentBcc());
-            }
-
-            //Tests ReplyTo to not send email if not passed, to avoid spam
-            if ($email->getReplyTo() !== null) {
-                if ($validator->isValid($email->getReplyTo(), $multipleValidations)) {
-                    $message->setReplyTo($email->getReplyTo());
-                } else {
-                    $send = false;
-                }
-            }
-
-            //Attach files
-            if (array_key_exists('attach', $emailData) && is_array($emailData['attach'])) {
-                foreach ($emailData['attach'] as $attach) {
-                    $message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
-                }
-            }
-
-            //Sends email
-            if ($send === true) {
-                $this->mailer->send($message);
-
-                //Persists Email in DB
-                if ($saveDatabase === true) {
-                    $this->em->persist($email);
-                    $this->em->flush();
-                }
+        //Validates ReplyTo to not send email if not passed, to avoid spam
+        if ($email->getReplyTo() !== null) {
+            if ($validator->isValid($email->getReplyTo(), $multipleValidations)) {
+                $message->setReplyTo($email->getReplyTo());
+            } else {
+                return false;
             }
         }
+
+        //SentCC
+        if ($email->getSentCc() !== null && $validator->isValid($email->getSentCc(), $multipleValidations)) {
+            $message->setCc($email->getSentCc());
+        }
+
+        //Sent Bcc
+        if ($email->getSentBcc() !== null && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
+            $message->setBcc($email->getSentBcc());
+        }
+
+        //Attach files
+        if (array_key_exists('attach', $emailData) && is_array($emailData['attach'])) {
+            foreach ($emailData['attach'] as $attach) {
+                $message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
+            }
+        }
+
+        //Sends email
+        $message
+            ->setFrom($email->getSentFrom())
+            ->setSubject($email->getSubject())
+            ->setBody($email->getBody())
+            ->setContentType('text/html');
+        $this->mailer->send($message);
+
+        //Persists Email in DB
+        if ($saveDatabase === true) {
+            $this->em->persist($email);
+            $this->em->flush();
+        }
+
+        return true;
     }
 }
