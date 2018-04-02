@@ -1,5 +1,5 @@
 /*
- * (c) 2017: 975l <contact@975l.com>
+ * (c) 2017: 975L <contact@975l.com>
  * (c) 2017: Laurent Marquet <laurent.marquet@laposte.net>
  *
  * This source file is subject to the MIT license that is bundled
@@ -8,8 +8,9 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
+
 -- ----------------------------
--- Table structure for emails
+-- Table structure for emails -
 -- ----------------------------
 -- DROP TABLE IF EXISTS `emails`;
 CREATE TABLE `emails` (
@@ -25,33 +26,19 @@ CREATE TABLE `emails` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 
-/*
-Use the following if you want to archive your emails in anither table
-*/
 -- -------------------------------------
--- Table structure for emails_archives
+-- Table structure for emails_archives -
 -- -------------------------------------
 -- DROP TABLE IF EXISTS `emails_archives`;
-/*
-CREATE TABLE `emails_archives` (
-  `id` bigint(20) unsigned NOT NULL,
-  `date_sent` datetime DEFAULT NULL,
-  `subject` varchar(256) DEFAULT NULL,
-  `sent_from` varchar(128) DEFAULT NULL,
-  `sent_to` varchar(128) DEFAULT NULL,
-  `sent_cc` varchar(128) DEFAULT NULL,
-  `body` text,
-  `ip` varchar(48) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=ARCHIVE DEFAULT CHARSET=utf8mb4;
-*/
+CREATE TABLE `emails_archives` LIKE `emails`;
 
 
--- Procedure to be launched to archive the emails
-/*
-DROP PROCEDURE IF EXISTS proc_EmailsArchives;
+-- ------------------------------------------------
+-- Procedure to be launched to archive the emails -
+-- ------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_EmailsArchive;
 DELIMITER $
-CREATE PROCEDURE proc_EmailsArchives()
+CREATE PROCEDURE sp_EmailsArchive()
 LANGUAGE SQL NOT DETERMINISTIC CONTAINS SQL SQL SECURITY INVOKER
 BEGIN
     -- Defines the date
@@ -85,15 +72,13 @@ BEGIN
         WHERE (date_sent < @DateArchivage);
 END$
 DELIMITER ;
-*/
 
-
--- Event to be scheduled to launch automatically the process of archiving
-/*
+-- ------------------------------------------------------------------------
+-- Event to be scheduled to launch automatically the process of archiving -
+-- ------------------------------------------------------------------------
 DROP EVENT IF EXISTS e_monthly_archives;
 CREATE EVENT e_monthly_archives
     ON SCHEDULE
-    EVERY 1 MONTH STARTS '2016-12-01 02:00:00'
+    EVERY 1 MONTH STARTS '2018-01-01 02:00:00'
     DO
-        CALL proc_EmailsArchives();
-*/
+        CALL sp_EmailsArchive();

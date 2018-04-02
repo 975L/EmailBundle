@@ -1,5 +1,11 @@
 # Changelog
 
+v1.15.1
+-------
+- Changed creation of `emails_archives` table (02/04/2018)
+- Renamed stored procedure to archive emails (02/04/2018)
+- Made use by default of archiving emails (02/04/2018)
+
 v1.15
 -----
 - Set bold for the name of the site in the signature (30/03/2018)
