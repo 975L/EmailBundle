@@ -1,5 +1,9 @@
 # Changelog
 
+v1.15.2
+-------
+- Added information about multilingual prefix (03/05/2018)
+
 v1.15.1
 -------
 - Changed creation of `emails_archives` table (02/04/2018)

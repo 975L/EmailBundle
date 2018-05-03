@@ -63,8 +63,13 @@ Then, enable the routes by adding them to the `app/config/routing.yml` file of y
 ```yml
 c975_l_email:
     resource: "@c975LEmailBundle/Controller/"
-    type:     annotation
-    prefix:   /
+    type: annotation
+    prefix: /
+    #Multilingual website use the following
+    #prefix: /{_locale}
+    #defaults:   { _locale: %locale% }
+    #requirements:
+    #    _locale: en|fr|es
 ```
 
 Step 5: Create MySql table
