@@ -4,7 +4,7 @@
 
 {% block email_content %}
 {# Toolbar #}
-    {{ toolbar|raw }}
+    {{ toolbar_display('@c975LEmail/tools.html.twig', 'help', 'md') }}
 {# Help content #}
     {{ include( ['@c975LEmail/pages/languages/help-' ~ app.request.locale ~ '.html.twig', '@c975LEmail/pages/languages/help-en.html.twig']) }}
 {% endblock %}

@@ -47,19 +47,9 @@ class EmailController extends Controller
                 50
             );
 
-            //Defines toolbar
-            $tools  = $this->renderView('@c975LEmail/tools.html.twig', array(
-                'type' => 'dashboard',
-            ));
-            $toolbar = $this->forward('c975L\ToolbarBundle\Controller\ToolbarController::displayAction', array(
-                'tools'  => $tools,
-                'dashboard'  => 'email',
-            ))->getContent();
-
             //Returns the dashboard
             return $this->render('@c975LEmail/pages/dashboard.html.twig', array(
                 'emails' => $pagination,
-                'toolbar' => $toolbar,
             ));
         }
 
@@ -91,17 +81,7 @@ class EmailController extends Controller
             //Gets email
             $email = $repository->find(array('id' =>$id));
 
-            //Defines toolbar
-            $tools  = $this->renderView('@c975LEmail/tools.html.twig', array(
-                'type' => 'display',
-            ));
-            $toolbar = $this->forward('c975L\ToolbarBundle\Controller\ToolbarController::displayAction', array(
-                'tools'  => $tools,
-                'dashboard'  => 'email',
-            ))->getContent();
-
             return $this->render('@c975LEmail/pages/display.html.twig', array(
-                'toolbar' => $toolbar,
                 'email' => $email,
             ));
         }
@@ -118,24 +98,9 @@ class EmailController extends Controller
      */
     public function helpAction()
     {
-        //Gets the user
-        $user = $this->getUser();
-
-        //Returns the dashboard content
-        if ($user !== null && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
-            //Defines toolbar
-            $tools  = $this->renderView('@c975LEmail/tools.html.twig', array(
-                'type' => 'help',
-            ));
-            $toolbar = $this->forward('c975L\ToolbarBundle\Controller\ToolbarController::displayAction', array(
-                'tools'  => $tools,
-                'dashboard'  => 'email',
-            ))->getContent();
-
-            //Returns the help
-            return $this->render('@c975LEmail/pages/help.html.twig', array(
-                'toolbar' => $toolbar,
-            ));
+        //Returns the help
+        if ($this->getUser() !== null && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
+            return $this->render('@c975LEmail/pages/help.html.twig');
         }
 
         //Access is denied

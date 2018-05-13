@@ -1,8 +1,17 @@
 {% trans_default_domain 'toolbar' %}
 
 {% spaceless %}
+{# Dashboard #}
+{{ toolbar_button(path('email_dashboard'), 'dashboard', 'label.email'|trans) }}
+
 {# Help #}
 {% if type != 'help' %}
     {{ toolbar_button(path('email_help'), 'help') }}
 {% endif %}
+
+{# Signout #}
+{{ toolbar_button(path('user_signout'), 'signout') }}
+
+{# Other dashboards #}
+{{ toolbar_dashboards('md') }}
 {% endspaceless %}

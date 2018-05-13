@@ -4,8 +4,7 @@
 
 {% block email_content %}
 {# Toolbar #}
-    {{ toolbar|raw }}
-
+    {{ toolbar_display('@c975LEmail/tools.html.twig', 'display', 'md') }}
 {# List of emails and actions #}
     <div class="row">
 {# Id #}
