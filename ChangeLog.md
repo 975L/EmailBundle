@@ -1,5 +1,9 @@
 # Changelog
 
+v1.15.3.1
+---------
+- Removed required in composer.json (22/05/2018)
+
 v1.15.3
 -------
 - Modified toolbars calls due to modification of c975LToolbarBundle (13/05/2018)
