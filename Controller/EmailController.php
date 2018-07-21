@@ -26,7 +26,7 @@ class EmailController extends Controller
      *      name="email_dashboard")
      * @Method({"GET", "HEAD"})
      */
-    public function dashboardAction(Request $request)
+    public function dashboard(Request $request)
     {
         //Gets the user
         $user = $this->getUser();
@@ -66,7 +66,7 @@ class EmailController extends Controller
      *      })
      * @Method({"GET", "HEAD"})
      */
-    public function displayAction($id)
+    public function display($id)
     {
         //Gets the user
         $user = $this->getUser();
@@ -96,7 +96,7 @@ class EmailController extends Controller
      *      name="email_help")
      * @Method({"GET", "HEAD"})
      */
-    public function helpAction()
+    public function help()
     {
         //Returns the help
         if ($this->getUser() !== null && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {

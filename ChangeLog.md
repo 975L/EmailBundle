@@ -1,5 +1,11 @@
 # Changelog
 
+v1.15.4
+-------
+- Removed Bootstrap javascript request as not needed (21/07/2018)
+- Removed `Action` in controller method name as not requested anymore (21/07/2018)
+- Corrected meta in `layout.html.twig` (21/07/2018)
+
 v1.15.3.1
 ---------
 - Removed required in composer.json (22/05/2018)
