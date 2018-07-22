@@ -1,5 +1,11 @@
 # Changelog
 
+v1.15.5
+-------
+- Use of Yoda style (22/07/2018)
+- Split methods in Service (22/07/2018)
+- Setup of tests (22/07/2018)
+
 v1.15.4
 -------
 - Removed Bootstrap javascript request as not needed (21/07/2018)

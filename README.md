@@ -117,8 +117,8 @@ class AnyController extends Controller
             'replyTo' => 'contact@example.com', //optional
             'body' => $body,
             'attach' => array(
-                array($data, $filename, $contentType)
-                ), //optional
+                array($data, $filename, $contentType),
+            ), //optional
             'ip' => $request->getClientIp(), //optional
             );
 

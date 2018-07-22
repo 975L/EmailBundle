@@ -18,26 +18,32 @@ use c975L\EmailBundle\Entity\Email;
 class EmailService
 {
     private $mailer;
+    private $message;
     private $em;
 
     public function __construct(
         \Swift_Mailer $mailer,
         \Doctrine\ORM\EntityManagerInterface $em
-        )
-    {
+        ) {
         $this->mailer = $mailer;
         $this->em = $em;
     }
 
-    //Creates and sends the email
-    public function send($emailData, $saveDatabase = false)
+    //Creates email object
+    public function create($emailData)
     {
-        //Creates email
         $email = new Email();
-        $email->setDataFromArray($emailData);
-        $email->setDateSent(new \DateTime());
+        $email
+            ->setDataFromArray($emailData)
+            ->setDateSent(new \DateTime())
+        ;
 
-        //Validates addresses
+        return $email;
+    }
+
+    //Validates email addresses and creates message
+    public function validate($email)
+    {
         $validator = new EmailValidator();
         $multipleValidations = new MultipleValidationWithAnd([
             new RFCValidation(),
@@ -45,55 +51,73 @@ class EmailService
         ]);
 
         //Creates message
-        $message = new \Swift_Message();
+        $this->message = new \Swift_Message();
 
         //Validates SentTo to not send email if not passed, to avoid spam
-        if ($email->getSentTo() !== null && $validator->isValid($email->getSentTo(), $multipleValidations)) {
-            $message->setTo($email->getSentTo());
+        if (null !== $email->getSentTo() && $validator->isValid($email->getSentTo(), $multipleValidations)) {
+            $this->message->setTo($email->getSentTo());
         } else {
-            return false;
+            $this->message = false;
         }
 
         //Validates ReplyTo to not send email if not passed, to avoid spam
-        if ($email->getReplyTo() !== null) {
+        if (null !== $email->getReplyTo()) {
             if ($validator->isValid($email->getReplyTo(), $multipleValidations)) {
-                $message->setReplyTo($email->getReplyTo());
+                $this->message->setReplyTo($email->getReplyTo());
             } else {
-                return false;
+                $this->message = false;
             }
         }
 
         //SentCC
-        if ($email->getSentCc() !== null && $validator->isValid($email->getSentCc(), $multipleValidations)) {
-            $message->setCc($email->getSentCc());
+        if (null !== $email->getSentCc() && $validator->isValid($email->getSentCc(), $multipleValidations)) {
+            $this->message->setCc($email->getSentCc());
         }
 
         //Sent Bcc
-        if ($email->getSentBcc() !== null && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
-            $message->setBcc($email->getSentBcc());
+        if (null !== $email->getSentBcc() && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
+            $this->message->setBcc($email->getSentBcc());
         }
 
         //Attach files
         if (array_key_exists('attach', $emailData) && is_array($emailData['attach'])) {
             foreach ($emailData['attach'] as $attach) {
-                $message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
+                $this->message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
             }
         }
+    }
 
-        //Sends email
-        $message
-            ->setFrom($email->getSentFrom())
-            ->setSubject($email->getSubject())
-            ->setBody($email->getBody())
-            ->setContentType('text/html');
-        $this->mailer->send($message);
-
-        //Persists Email in DB
-        if ($saveDatabase === true) {
+    //Persists Email in DB
+    public function persist($saveDatabase, $email)
+    {
+        if (true === $saveDatabase) {
             $this->em->persist($email);
             $this->em->flush();
         }
+    }
 
-        return true;
+    //Creates and sends the email
+    public function send($emailData, $saveDatabase = false)
+    {
+        //Creates email
+        $email = $this->create($emailData);
+
+        //Validates addresses
+        $this->validate($email);
+
+        //Persists Email in DB
+        $this->persist($saveDatabase);
+
+        //Sends email
+        if ($this->message instanceof Swift_Message) {
+            $this->message
+                ->setFrom($email->getSentFrom())
+                ->setSubject($email->getSubject())
+                ->setBody($email->getBody())
+                ->setContentType('text/html');
+            return $this->mailer->send($this->message);
+        }
+
+        return false;
     }
 }

@@ -28,16 +28,12 @@ class EmailController extends Controller
      */
     public function dashboard(Request $request)
     {
-        //Gets the user
-        $user = $this->getUser();
-
         //Returns the dashboard content
-        if ($user !== null && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
-            //Gets the manager
-            $em = $this->getDoctrine()->getManager();
-
-            //Gets repository
-            $repository = $em->getRepository('c975LEmailBundle:Email');
+        if (null !== $this->getUser() && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
+            //Gets the repository
+            $repository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('c975LEmailBundle:Email');
 
             //Pagination
             $paginator  = $this->get('knp_paginator');
@@ -68,18 +64,12 @@ class EmailController extends Controller
      */
     public function display($id)
     {
-        //Gets the user
-        $user = $this->getUser();
-
-        if ($user !== null && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
-            //Gets the manager
-            $em = $this->getDoctrine()->getManager();
-
-            //Gets repository
-            $repository = $em->getRepository('c975LEmailBundle:Email');
-
-            //Gets email
-            $email = $repository->find(array('id' =>$id));
+        if (null !== $this->getUser() && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
+            //Gets the email
+            $email = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('c975LEmailBundle:Email')
+                ->findOneById($id);
 
             return $this->render('@c975LEmail/pages/display.html.twig', array(
                 'email' => $email,
@@ -99,7 +89,7 @@ class EmailController extends Controller
     public function help()
     {
         //Returns the help
-        if ($this->getUser() !== null && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
+        if (null !== $this->getUser() && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
             return $this->render('@c975LEmail/pages/help.html.twig');
         }
 
