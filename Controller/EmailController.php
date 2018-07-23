@@ -20,7 +20,7 @@ use c975L\EmailBundle\Entity\Email;
 
 class EmailController extends Controller
 {
-//DASHBOARD
+    //DASHBOARD
     /**
      * @Route("/email/dashboard",
      *      name="email_dashboard")
@@ -53,7 +53,7 @@ class EmailController extends Controller
         throw $this->createAccessDeniedException();
     }
 
-//DISPLAY
+    //DISPLAY
     /**
      * @Route("/email/{id}",
      *      name="email_display",
@@ -80,7 +80,7 @@ class EmailController extends Controller
         throw $this->createAccessDeniedException();
     }
 
-//HELP
+    //HELP
     /**
      * @Route("/email/help",
      *      name="email_help")

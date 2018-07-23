@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "6b5b03a13cdd9f80624ca8e826057a93",
@@ -2437,12 +2437,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "1bb74e8e0c0069f1448ee1fdec73bc7c426f30eb"
+                "reference": "5be50077a45cd1cb447fe6d7080436be839a6ee0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/1bb74e8e0c0069f1448ee1fdec73bc7c426f30eb",
-                "reference": "1bb74e8e0c0069f1448ee1fdec73bc7c426f30eb",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/5be50077a45cd1cb447fe6d7080436be839a6ee0",
+                "reference": "5be50077a45cd1cb447fe6d7080436be839a6ee0",
                 "shasum": ""
             },
             "require": {
@@ -2517,7 +2517,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-23T08:20:32+00:00"
+            "time": "2018-07-23T11:38:47+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

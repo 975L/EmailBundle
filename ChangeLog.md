@@ -1,5 +1,10 @@
 # Changelog
 
+v1.15.6.1
+---------
+- Updated `.travis.yml` to reflect recommended config (23/07/2018)
+- Removed options in `phpunit.xml.dist` (23/07/2018)
+
 v1.15.6
 -------
 - Updated tests (22/07/2018)

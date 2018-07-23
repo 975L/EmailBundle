@@ -6,10 +6,7 @@
     verbose="true"
     backupGlobals="false"
     colors="true"
-    forceCoversAnnotation="true"
-    beStrictAboutCoversAnnotation="true"
     beStrictAboutOutputDuringTests="true"
-    beStrictAboutTodoAnnotatedTests="true"
     beStrictAboutTestsThatDoNotTestAnything="true"
     beStrictAboutChangesToGlobalState="true"
 >
@@ -28,6 +25,7 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
+                <directory>./Controller</directory>
                 <directory>./DependencyInjection</directory>
                 <directory>./Entity</directory>
                 <directory>./Resources</directory>
