@@ -36,5 +36,8 @@
         "email": "contact@975l.com",
         "source": "https://github.com/975L/EmailBundle",
         "issues": "https://github.com/975L/EmailBundle/issues"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3@dev"
     }
 }

@@ -1,5 +1,13 @@
 # Changelog
 
+v1.15.6
+-------
+- Updated tests (22/07/2018)
+- Added `.travis.yml` (22/07/2018)
+- Corrected attachments (22/07/2018)
+- Corrected persistence in DB (22/07/2018)
+- Improved Service due to result of tests (23/07/2018)
+
 v1.15.5
 -------
 - Use of Yoda style (22/07/2018)

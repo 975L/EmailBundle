@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
+    bootstrap="vendor/autoload.php"
+    verbose="true"
     backupGlobals="false"
     colors="true"
-    verbose="true"
+    forceCoversAnnotation="true"
+    beStrictAboutCoversAnnotation="true"
     beStrictAboutOutputDuringTests="true"
+    beStrictAboutTodoAnnotatedTests="true"
     beStrictAboutTestsThatDoNotTestAnything="true"
     beStrictAboutChangesToGlobalState="true"
 >
@@ -16,7 +20,7 @@
 
     <testsuites>
         <testsuite name="c975L/EmailBundle Test Suite">
-            <directory>Tests</directory>
+            <directory suffix="Test.php">Tests</directory>
         </testsuite>
     </testsuites>
 
@@ -27,6 +31,8 @@
                 <directory>./DependencyInjection</directory>
                 <directory>./Entity</directory>
                 <directory>./Resources</directory>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
             </exclude>
         </whitelist>
     </filter>

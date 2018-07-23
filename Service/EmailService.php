@@ -9,6 +9,7 @@
 
 namespace c975L\EmailBundle\Service;
 
+use \Swift_Message;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -17,6 +18,7 @@ use c975L\EmailBundle\Entity\Email;
 
 class EmailService
 {
+    private $email;
     private $mailer;
     private $message;
     private $em;
@@ -32,17 +34,13 @@ class EmailService
     //Creates email object
     public function create($emailData)
     {
-        $email = new Email();
-        $email
-            ->setDataFromArray($emailData)
-            ->setDateSent(new \DateTime())
-        ;
-
-        return $email;
+        $this->email = new Email();
+        $this->email->setDataFromArray($emailData);
+        $this->email->setDateSent(new \DateTime());
     }
 
     //Validates email addresses and creates message
-    public function validate($email)
+    public function validate($emailData)
     {
         $validator = new EmailValidator();
         $multipleValidations = new MultipleValidationWithAnd([
@@ -54,29 +52,31 @@ class EmailService
         $this->message = new \Swift_Message();
 
         //Validates SentTo to not send email if not passed, to avoid spam
-        if (null !== $email->getSentTo() && $validator->isValid($email->getSentTo(), $multipleValidations)) {
-            $this->message->setTo($email->getSentTo());
+        if (null !== $this->email->getSentTo() && $validator->isValid($this->email->getSentTo(), $multipleValidations)) {
+            $this->message->setTo($this->email->getSentTo());
         } else {
             $this->message = false;
+            return false;
         }
 
         //Validates ReplyTo to not send email if not passed, to avoid spam
-        if (null !== $email->getReplyTo()) {
-            if ($validator->isValid($email->getReplyTo(), $multipleValidations)) {
-                $this->message->setReplyTo($email->getReplyTo());
+        if (null !== $this->email->getReplyTo()) {
+            if ($validator->isValid($this->email->getReplyTo(), $multipleValidations)) {
+                $this->message->setReplyTo($this->email->getReplyTo());
             } else {
                 $this->message = false;
+                return false;
             }
         }
 
         //SentCC
-        if (null !== $email->getSentCc() && $validator->isValid($email->getSentCc(), $multipleValidations)) {
-            $this->message->setCc($email->getSentCc());
+        if (null !== $this->email->getSentCc() && $validator->isValid($this->email->getSentCc(), $multipleValidations)) {
+            $this->message->setCc($this->email->getSentCc());
         }
 
         //Sent Bcc
-        if (null !== $email->getSentBcc() && $validator->isValid($email->getSentBcc(), $multipleValidations)) {
-            $this->message->setBcc($email->getSentBcc());
+        if (null !== $this->email->getSentBcc() && $validator->isValid($this->email->getSentBcc(), $multipleValidations)) {
+            $this->message->setBcc($this->email->getSentBcc());
         }
 
         //Attach files
@@ -88,10 +88,10 @@ class EmailService
     }
 
     //Persists Email in DB
-    public function persist($saveDatabase, $email)
+    public function persist($saveDatabase)
     {
         if (true === $saveDatabase) {
-            $this->em->persist($email);
+            $this->em->persist($this->email);
             $this->em->flush();
         }
     }
@@ -100,10 +100,10 @@ class EmailService
     public function send($emailData, $saveDatabase = false)
     {
         //Creates email
-        $email = $this->create($emailData);
+        $this->create($emailData);
 
         //Validates addresses
-        $this->validate($email);
+        $this->validate($emailData);
 
         //Persists Email in DB
         $this->persist($saveDatabase);
@@ -111,11 +111,13 @@ class EmailService
         //Sends email
         if ($this->message instanceof Swift_Message) {
             $this->message
-                ->setFrom($email->getSentFrom())
-                ->setSubject($email->getSubject())
-                ->setBody($email->getBody())
+                ->setFrom($this->email->getSentFrom())
+                ->setSubject($this->email->getSubject())
+                ->setBody($this->email->getBody())
                 ->setContentType('text/html');
-            return $this->mailer->send($this->message);
+            $this->mailer->send($this->message);
+
+            return true;
         }
 
         return false;

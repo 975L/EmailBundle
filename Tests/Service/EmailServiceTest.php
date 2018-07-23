@@ -15,11 +15,24 @@ use c975L\EmailBundle\Service\EmailService;
 
 class EmailServiceTest extends TestCase
 {
-    public function testCreateEmailObject()
+    private $mailer;
+    private $em;
+    private $emailService;
+    private $emailData;
+
+    protected function setUp()
     {
-        //Defines data
-        $emailService = new EmailService();
-        $emailData = array(
+        //Defines needed mocks
+        $this->mailer = $this->getMockBuilder('\Swift_Mailer')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->em = $this->getMockBuilder('\Doctrine\ORM\EntityManagerInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        //Defines emailData
+        $this->emailService = new EmailService($this->mailer, $this->em);
+        $this->emailData = array(
             'subject' => 'YOUR_SUBJECT',
             'sentFrom' => 'contact@example.com',
             'sentTo' => 'contact@example.com',
@@ -32,8 +45,39 @@ class EmailServiceTest extends TestCase
             ),
             'ip' => 'IP_ADDRESS',
             );
+    }
 
-        //Tests email
-        $this->assertInstanceOf('Email', $emailService->create($emailData));
+    //Test sending a good email
+    public function testSendEmail()
+    {
+        $this->assertTrue($this->emailService->send($this->emailData));
+    }
+
+    //Test sending a wrong sentTo
+    public function testSendWrongSentToEmail()
+    {
+        $this->emailData['sentTo'] = null;
+        $this->assertFalse($this->emailService->send($this->emailData));
+    }
+
+    //Test sending a wrong replyTo
+    public function testSendWrongReplyToEmail()
+    {
+        $this->emailData['replyTo'] = 'bad_email';
+        $this->assertFalse($this->emailService->send($this->emailData));
+    }
+
+    //Test sending a wrong sentCc
+    public function testSendWrongSentCcEmail()
+    {
+        $this->emailData['sentCc'] = 'bad_email';
+        $this->assertTrue($this->emailService->send($this->emailData));
+    }
+
+    //Test sending a wrong sentBcc
+    public function testSendWrongSentBccEmail()
+    {
+        $this->emailData['sentBcc'] = 'bad_email';
+        $this->assertTrue($this->emailService->send($this->emailData));
     }
 }
