@@ -6,7 +6,7 @@ EmailBundle does the following:
 - Stores email in a database as an option,
 - Sends email using  [SwiftMailer](https://github.com/symfony/swiftmailer-bundle),
 - Allows user with good ROLE to see emails sent,
-- Defines a template for emails that should be overriden to inegrate fully with website,
+- Defines a template for emails that should be overriden to integrate fully with website,
 - Allows to attach one or multiple files.
 
 [Email Bundle dedicated web page](https://975l.com/en/pages/email-bundle).
@@ -98,9 +98,11 @@ Then in your Controller, add this code to create, insert in DB and send your ema
 <?php
 // src/Controller/AnyController.php
 
+use c975L\EmailBundle\Service\EmailService;
+
 class AnyController extends Controller
 {
-    public function anyFunction(Request $request)
+    public function anyFunction(Request $request, EmailService $emailService)
     {
         // ...
 
@@ -123,7 +125,6 @@ class AnyController extends Controller
             );
 
         //Sends email
-        $emailService = $this->get(\c975L\EmailBundle\Service\EmailService::class);
         $emailSent = $emailService->send($emailData, [saveDatabase ? true|false(default)]);
 
         //You can test if email has been sent
@@ -138,8 +139,8 @@ class AnyController extends Controller
 }
 ```
 
-Email messages
---------------
+Email messages templates
+------------------------
 To avoid too much overiding and keep it simple to use, it's a bit tricky to understand the setup.
 
 You **must** override `Resources/views/emails/layout.html.twig` with `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` as `@c975lEmail/emails/layout.html.twig` is an empty shell extended by other bundles (see example above).
