@@ -20,7 +20,7 @@ use c975L\EmailBundle\Entity\Email;
 
 class EmailController extends Controller
 {
-    //DASHBOARD
+//DASHBOARD
     /**
      * @Route("/email/dashboard",
      *      name="email_dashboard")
@@ -28,32 +28,30 @@ class EmailController extends Controller
      */
     public function dashboard(Request $request)
     {
-        //Returns the dashboard content
-        if (null !== $this->getUser() && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
-            //Gets the repository
-            $repository = $this->getDoctrine()
-                ->getManager()
-                ->getRepository('c975LEmailBundle:Email');
+        $this->denyAccessUnlessGranted('dashboard', null);
 
-            //Pagination
-            $paginator  = $this->get('knp_paginator');
-            $pagination = $paginator->paginate(
-                $repository->findAll(array(), array('dateSent' => 'DESC')),
-                $request->query->getInt('p', 1),
-                50
-            );
+        //Gets the emails
+        $emails = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('c975LEmailBundle:Email')
+            ->findAll(array(), array('dateSent' => 'DESC'))
+            ;
 
-            //Returns the dashboard
-            return $this->render('@c975LEmail/pages/dashboard.html.twig', array(
-                'emails' => $pagination,
-            ));
-        }
+        //Pagination
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $emails,
+            $request->query->getInt('p', 1),
+            50
+        );
 
-        //Access is denied
-        throw $this->createAccessDeniedException();
+        //Renders the dashboard
+        return $this->render('@c975LEmail/pages/dashboard.html.twig', array(
+            'emails' => $pagination,
+        ));
     }
 
-    //DISPLAY
+//DISPLAY
     /**
      * @Route("/email/{id}",
      *      name="email_display",
@@ -62,25 +60,17 @@ class EmailController extends Controller
      *      })
      * @Method({"GET", "HEAD"})
      */
-    public function display($id)
+    public function display(Email $email)
     {
-        if (null !== $this->getUser() && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
-            //Gets the email
-            $email = $this->getDoctrine()
-                ->getManager()
-                ->getRepository('c975LEmailBundle:Email')
-                ->findOneById($id);
+        $this->denyAccessUnlessGranted('display', $email);
 
-            return $this->render('@c975LEmail/pages/display.html.twig', array(
-                'email' => $email,
-            ));
-        }
-
-        //Access is denied
-        throw $this->createAccessDeniedException();
+        //Renders the email
+        return $this->render('@c975LEmail/pages/display.html.twig', array(
+            'email' => $email,
+        ));
     }
 
-    //HELP
+//HELP
     /**
      * @Route("/email/help",
      *      name="email_help")
@@ -88,12 +78,9 @@ class EmailController extends Controller
      */
     public function help()
     {
-        //Returns the help
-        if (null !== $this->getUser() && $this->get('security.authorization_checker')->isGranted($this->getParameter('c975_l_email.roleNeeded'))) {
-            return $this->render('@c975LEmail/pages/help.html.twig');
-        }
+        $this->denyAccessUnlessGranted('help', null);
 
-        //Access is denied
-        throw $this->createAccessDeniedException();
+        //Renders the help
+        return $this->render('@c975LEmail/pages/help.html.twig');
     }
 }

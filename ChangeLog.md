@@ -1,5 +1,10 @@
 # Changelog
 
+v1.16
+-----
+- Made use of Voters for access rights (01/08/2018)
+- Made use of ParamConverter (01/08/2018)
+
 v1.15.6.2
 ---------
 - Corrected README.md (29/07/2018)
