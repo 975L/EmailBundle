@@ -1,5 +1,9 @@
 # Changelog
 
+v1.16.1
+-------
+- Added missing Security folder (01/08/2018)
+
 v1.16
 -----
 - Made use of Voters for access rights (01/08/2018)
