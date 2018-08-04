@@ -1,16 +1,12 @@
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: true
+    c975L\EmailBundle\Controller\EmailController: ~
 
-    c975L\EmailBundle\Controller\:
-        resource: '../../Controller/*'
-
-    c975L\EmailBundle\Security\:
-        resource: '../../Security/*'
-        bind:
+    c975L\EmailBundle\Security\EmailVoter:
+        arguments:
+            $decisionManager: '@Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface'
             $roleNeeded: '%c975_l_email.roleNeeded%'
 
-    c975L\EmailBundle\Service\:
-        resource: '../../Service/*'
+    c975L\EmailBundle\Service\EmailService:
+        arguments:
+            $mailer: '@Swift_Mailer'
+            $em: '@Doctrine\ORM\EntityManagerInterface'
