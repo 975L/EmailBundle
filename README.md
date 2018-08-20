@@ -9,7 +9,10 @@ EmailBundle does the following:
 - Defines a template for emails that should be overriden to integrate fully with website,
 - Allows to attach one or multiple files.
 
-[Email Bundle dedicated web page](https://975l.com/en/pages/email-bundle).
+[EmailBundle dedicated web page](https://975l.com/en/pages/email-bundle).
+
+[EmailBundle API documentation](https://975l.com/apidoc/c975L/EmailBundle.html).
+
 
 Bundle installation
 ===================
@@ -211,3 +214,5 @@ In `layout.html.twig`, it will mainly consist to extend your layout and define s
     {% endblock %}
 {% endblock %}
 ```
+
+**If this project help you to reduce time to develop, you can [buy me a coffee](https://www.buymeacoffee.com/LaurentMarquet) :)**

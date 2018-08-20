@@ -1,5 +1,10 @@
 # Changelog
 
+v1.16.2.1
+---------
+- Added link to BuyMeCoffee
+- Added link to apidoc (20/08/2018)
+
 v1.16.2
 -------
 - Typo in README.md (04/08/2018)
