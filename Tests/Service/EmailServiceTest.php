@@ -10,7 +10,6 @@
 namespace c975L\EmailBundle\Tests\Service;
 
 use PHPUnit\Framework\TestCase;
-use c975L\EmailBundle\Entity\Email;
 use c975L\EmailBundle\Service\EmailService;
 
 class EmailServiceTest extends TestCase
@@ -30,7 +29,7 @@ class EmailServiceTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        //Defines emailData
+        //Defines data
         $this->emailService = new EmailService($this->mailer, $this->em);
         $this->emailData = array(
             'subject' => 'YOUR_SUBJECT',

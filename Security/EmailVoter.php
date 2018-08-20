@@ -16,13 +16,34 @@ use c975L\EmailBundle\Entity\Email;
 
 class EmailVoter extends Voter
 {
+    /**
+     * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
+     */
     private $decisionManager;
+
+    /**
+     * @var string
+     */
     private $roleNeeded;
 
+    /**
+     * @var string
+     */
     public const DASHBOARD = 'dashboard';
+
+    /**
+     * @var string
+     */
     public const DISPLAY = 'display';
+
+    /**
+     * @var string
+     */
     public const HELP = 'help';
 
+    /**
+     * @var array
+     */
     private const ATTRIBUTES = array(
         self::DASHBOARD,
         self::DISPLAY,

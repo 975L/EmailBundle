@@ -1,5 +1,7 @@
 *.bak
 .php_cs.cache
 .phpunit.result.cache
-coverage
 vendor
+Tests/cache
+Tests/coverage
+Tests/logs

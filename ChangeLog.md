@@ -1,5 +1,14 @@
 # Changelog
 
+v1.16.2
+-------
+- Typo in README.md (04/08/2018)
+- Defined services explicitly (04/08/2018)
+- Made use of `EmailServiceInterface` (04/08/2018)
+- Added docblocks data (04/08/2018)
+- Added php-cs-fixer (04/08/2018)
+- Moved `getEmails()` for dashboard to EmailService (04/08/2018)
+
 v1.16.1
 -------
 - Added missing Security folder (01/08/2018)

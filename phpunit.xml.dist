@@ -12,7 +12,7 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_CLASS" value="AppKernel" />
+        <server name="KERNEL_CLASS" value="c975L\EmailBundle\Tests\AppKernel" />
     </php>
 
     <testsuites>
@@ -25,7 +25,6 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
-                <directory>./Controller</directory>
                 <directory>./DependencyInjection</directory>
                 <directory>./Entity</directory>
                 <directory>./Resources</directory>

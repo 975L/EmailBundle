@@ -10,6 +10,7 @@
 namespace c975L\EmailBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,42 +18,40 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use c975L\EmailBundle\Entity\Email;
+use c975L\EmailBundle\Service\EmailServiceInterface;
 
+/**
+ * @copyright 2018: 975L <contact@975l.com>
+ * @author Laurent Marquet <laurent.marquet@laposte.net>
+ */
 class EmailController extends Controller
 {
 //DASHBOARD
     /**
+     * Displays the dashboard
+     *
+     * @return Response
+     *
      * @Route("/email/dashboard",
      *      name="email_dashboard")
      * @Method({"GET", "HEAD"})
      */
-    public function dashboard(Request $request)
+    public function dashboard(Request $request, EmailServiceInterface $emailService)
     {
         $this->denyAccessUnlessGranted('dashboard', null);
 
-        //Gets the emails
-        $emails = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('c975LEmailBundle:Email')
-            ->findAll(array(), array('dateSent' => 'DESC'))
-            ;
-
-        //Pagination
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $emails,
-            $request->query->getInt('p', 1),
-            50
-        );
-
         //Renders the dashboard
         return $this->render('@c975LEmail/pages/dashboard.html.twig', array(
-            'emails' => $pagination,
+            'emails' => $emailService->getEmails($request->query->getInt('p', 1)),
         ));
     }
 
 //DISPLAY
     /**
+     * Displays the email
+     *
+     * @return Response
+     *
      * @Route("/email/{id}",
      *      name="email_display",
      *      requirements={
@@ -72,6 +71,10 @@ class EmailController extends Controller
 
 //HELP
     /**
+     * Displays the help
+     *
+     * @return Response
+     *
      * @Route("/email/help",
      *      name="email_help")
      * @Method({"GET", "HEAD"})

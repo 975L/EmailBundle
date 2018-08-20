@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Email
 {
     /**
+     * Email id
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -29,6 +30,7 @@ class Email
     protected $id;
 
     /**
+     * DateTime email has been sent
      * @var \DateTime
      *
      * @ORM\Column(name="date_sent", type="datetime", nullable=true)
@@ -36,6 +38,7 @@ class Email
     protected $dateSent;
 
     /**
+     * Subject of the email
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=256, nullable=true)
@@ -43,6 +46,7 @@ class Email
     protected $subject;
 
     /**
+     * Email address sent from
      * @var string
      *
      * @ORM\Column(name="sent_from", type="string", length=128, nullable=true)
@@ -50,6 +54,7 @@ class Email
     protected $sentFrom;
 
     /**
+     * Email address sent to
      * @var string
      *
      * @ORM\Column(name="sent_to", type="string", length=128, nullable=true)
@@ -57,6 +62,7 @@ class Email
     protected $sentTo;
 
     /**
+     * Email address sent cc
      * @var string
      *
      * @ORM\Column(name="sent_cc", type="string", length=128, nullable=true)
@@ -64,16 +70,19 @@ class Email
     protected $sentCc;
 
     /**
+     * Email address sent bcc (not mapped in db)
      * @var string
      */
     protected $sentBcc;
 
     /**
+     * Email address reply to (not mapped in db)
      * @var string
      */
     protected $replyTo;
 
     /**
+     * Body of email
      * @var string
      *
      * @ORM\Column(name="body", type="string", length=65000, nullable=true)
@@ -81,13 +90,18 @@ class Email
     protected $body;
 
     /**
+     * IP address
      * @var string
      *
      * @ORM\Column(name="ip", type="string", length=48, nullable=true)
      */
     protected $ip;
 
-
+    /**
+     * Hydrates entity from associative array
+     *
+     * @param array $data
+     */
     public function setDataFromArray($data)
     {
         foreach ($data as $key => $value) {
@@ -97,7 +111,6 @@ class Email
             }
         }
     }
-
 
     /**
      * Get id
@@ -212,7 +225,7 @@ class Email
     /**
      * Get sentCc
      *
-     * @return string
+     * @return string|null
      */
     public function getSentCc()
     {
@@ -234,7 +247,7 @@ class Email
     /**
      * Get sentBcc
      *
-     * @return string
+     * @return string|null
      */
     public function getSentBcc()
     {

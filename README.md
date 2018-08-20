@@ -98,11 +98,11 @@ Then in your Controller, add this code to create, insert in DB and send your ema
 <?php
 // src/Controller/AnyController.php
 
-use c975L\EmailBundle\Service\EmailService;
+use c975L\EmailBundle\Service\EmailServiceInterface;
 
 class AnyController extends Controller
 {
-    public function anyFunction(Request $request, EmailService $emailService)
+    public function anyFunction(Request $request, EmailServiceInterface $emailService)
     {
         // ...
 

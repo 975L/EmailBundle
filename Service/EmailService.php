@@ -15,41 +15,126 @@ use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use c975L\EmailBundle\Entity\Email;
+use c975L\EmailBundle\Service\EmailServiceInterface;
 
-class EmailService
+class EmailService implements EmailServiceInterface
 {
-    private $email;
-    private $mailer;
-    private $message;
+    /**
+     * @var \Doctrine\ORM\EntityManagerInterface
+     */
     private $em;
 
+    /**
+     * @var \c975L\EmailBundle\Entity\Email
+     */
+    private $email;
+
+    /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
+
+    /**
+     * @var \Swift_Message
+     */
+    private $message;
+
+    /**
+     * @var \Knp\Component\Pager\Pagination\PaginatorInterface
+     */
+    private $paginator;
+
     public function __construct(
+        \Doctrine\ORM\EntityManagerInterface $em,
         \Swift_Mailer $mailer,
-        \Doctrine\ORM\EntityManagerInterface $em
-        ) {
-        $this->mailer = $mailer;
+        \Knp\Component\Pager\PaginatorInterface $paginator
+    )
+    {
         $this->em = $em;
+        $this->mailer = $mailer;
+        $this->paginator = $paginator;
+        $this->message = new \Swift_Message();
+        $this->email = new Email();
     }
 
-    //Creates email object
-    public function create($emailData)
+    /**
+     * {@inheritdoc}
+     */
+    public function create(array $emailData)
     {
-        $this->email = new Email();
         $this->email->setDataFromArray($emailData);
         $this->email->setDateSent(new \DateTime());
     }
 
-    //Validates email addresses and creates message
-    public function validate($emailData)
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmails(int $number)
+    {
+        //Gets the emails
+        $emails = $this->em
+            ->getRepository('c975LEmailBundle:Email')
+            ->findAll(array(), array('dateSent' => 'DESC'))
+        ;
+
+        //Pagination
+        return $this->paginator->paginate(
+            $emails,
+            $number,
+            50
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function persist(bool $saveDatabase)
+    {
+        if (true === $saveDatabase) {
+            $this->em->persist($this->email);
+            $this->em->flush();
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function send(array $emailData, bool $saveDatabase = false)
+    {
+        //Creates email
+        $this->create($emailData);
+
+        //Validates addresses
+        $this->validate($emailData);
+
+        //Persists Email in DB
+        $this->persist($saveDatabase);
+
+        //Sends email
+        if ($this->message instanceof Swift_Message) {
+            $this->message
+                ->setFrom($this->email->getSentFrom())
+                ->setSubject($this->email->getSubject())
+                ->setBody($this->email->getBody())
+                ->setContentType('text/html');
+            $this->mailer->send($this->message);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(array $emailData)
     {
         $validator = new EmailValidator();
         $multipleValidations = new MultipleValidationWithAnd([
             new RFCValidation(),
             new DNSCheckValidation()
         ]);
-
-        //Creates message
-        $this->message = new \Swift_Message();
 
         //Validates SentTo to not send email if not passed, to avoid spam
         if (null !== $this->email->getSentTo() && $validator->isValid($this->email->getSentTo(), $multipleValidations)) {
@@ -85,41 +170,7 @@ class EmailService
                 $this->message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
             }
         }
-    }
 
-    //Persists Email in DB
-    public function persist($saveDatabase)
-    {
-        if (true === $saveDatabase) {
-            $this->em->persist($this->email);
-            $this->em->flush();
-        }
-    }
-
-    //Creates and sends the email
-    public function send($emailData, $saveDatabase = false)
-    {
-        //Creates email
-        $this->create($emailData);
-
-        //Validates addresses
-        $this->validate($emailData);
-
-        //Persists Email in DB
-        $this->persist($saveDatabase);
-
-        //Sends email
-        if ($this->message instanceof Swift_Message) {
-            $this->message
-                ->setFrom($this->email->getSentFrom())
-                ->setSubject($this->email->getSubject())
-                ->setBody($this->email->getBody())
-                ->setContentType('text/html');
-            $this->mailer->send($this->message);
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }

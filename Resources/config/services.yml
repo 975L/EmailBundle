@@ -1,4 +1,8 @@
 services:
+    _defaults:
+        autowire: false
+        autoconfigure: true
+
     c975L\EmailBundle\Controller\EmailController: ~
 
     c975L\EmailBundle\Security\EmailVoter:
@@ -8,5 +12,8 @@ services:
 
     c975L\EmailBundle\Service\EmailService:
         arguments:
-            $mailer: '@Swift_Mailer'
             $em: '@Doctrine\ORM\EntityManagerInterface'
+            $mailer: '@Swift_Mailer'
+            $paginator: '@Knp\Component\Pager\PaginatorInterface'
+
+    c975L\EmailBundle\Service\EmailServiceInterface: '@c975L\EmailBundle\Service\EmailService'
