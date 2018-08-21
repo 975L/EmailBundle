@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use c975L\EmailBundle\Entity\Email;
 
 /**
- * Entity ContactForm (not linked to a db)
+ * Voter for Email access
  * @author Laurent Marquet <laurent.marquet@laposte.net>
  * @copyright 2017 975L <contact@975l.com>
  */

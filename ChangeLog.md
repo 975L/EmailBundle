@@ -1,5 +1,9 @@
 # Changelog
 
+v1.16.2.3
+---------
+- Corrected documentation for Voter (21/08/2018)
+
 v1.16.2.2
 ---------
 - Adjusted documentation (21/08/2018)
@@ -10,7 +14,7 @@ v1.16.2.2
 
 v1.16.2.1
 ---------
-- Added link to BuyMeCoffee
+- Added link to BuyMeCoffee (20/08/2018)
 - Added link to apidoc (20/08/2018)
 
 v1.16.2
