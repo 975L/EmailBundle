@@ -9,7 +9,10 @@
 
 namespace c975L\EmailBundle\Service;
 
-use \Swift_Message;
+use Swift_Message;
+use Swift_Mailer;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -17,44 +20,44 @@ use Egulias\EmailValidator\Validation\RFCValidation;
 use c975L\EmailBundle\Entity\Email;
 use c975L\EmailBundle\Service\EmailServiceInterface;
 
+/**
+ * Main services related to Email
+ * @author Laurent Marquet <laurent.marquet@laposte.net>
+ * @copyright 2017 975L <contact@975l.com>
+ */
 class EmailService implements EmailServiceInterface
 {
     /**
-     * @var \Doctrine\ORM\EntityManagerInterface
+     * Stores EntityManager
+     * @var EntityManagerInterface
      */
     private $em;
 
     /**
-     * @var \c975L\EmailBundle\Entity\Email
+     * Stores Email Entity
+     * @var Email
      */
     private $email;
 
     /**
-     * @var \Swift_Mailer
+     * Stores mailer
+     * @var Swift_Mailer
      */
     private $mailer;
 
     /**
-     * @var \Swift_Message
+     * Stores message
+     * @var Swift_Message
      */
     private $message;
 
-    /**
-     * @var \Knp\Component\Pager\Pagination\PaginatorInterface
-     */
-    private $paginator;
-
     public function __construct(
-        \Doctrine\ORM\EntityManagerInterface $em,
-        \Swift_Mailer $mailer,
-        \Knp\Component\Pager\PaginatorInterface $paginator
+        EntityManagerInterface $em,
+        Swift_Mailer $mailer
     )
     {
         $this->em = $em;
         $this->mailer = $mailer;
-        $this->paginator = $paginator;
-        $this->message = new \Swift_Message();
-        $this->email = new Email();
     }
 
     /**
@@ -62,27 +65,22 @@ class EmailService implements EmailServiceInterface
      */
     public function create(array $emailData)
     {
+        $this->email = new Email();
         $this->email->setDataFromArray($emailData);
         $this->email->setDateSent(new \DateTime());
+
+        $this->message = new \Swift_Message();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getEmails(int $number)
+    public function getEmails()
     {
-        //Gets the emails
-        $emails = $this->em
+        return $this->em
             ->getRepository('c975LEmailBundle:Email')
             ->findAll(array(), array('dateSent' => 'DESC'))
         ;
-
-        //Pagination
-        return $this->paginator->paginate(
-            $emails,
-            $number,
-            50
-        );
     }
 
     /**

@@ -12,7 +12,9 @@ namespace c975L\EmailBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Email
+ * Entity Email (linked to DB table `emails`)
+ * @author Laurent Marquet <laurent.marquet@laposte.net>
+ * @copyright 2017 975L <contact@975l.com>
  *
  * @ORM\Table(name="emails")
  * @ORM\Entity
@@ -20,8 +22,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Email
 {
     /**
-     * Email id
-     * @var integer
+     * Email unique id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -70,13 +72,13 @@ class Email
     protected $sentCc;
 
     /**
-     * Email address sent bcc (not mapped in db)
+     * Email address sent bcc (not mapped in DB)
      * @var string
      */
     protected $sentBcc;
 
     /**
-     * Email address reply to (not mapped in db)
+     * Email address reply to (not mapped in DB)
      * @var string
      */
     protected $replyTo;
@@ -99,7 +101,6 @@ class Email
 
     /**
      * Hydrates entity from associative array
-     *
      * @param array $data
      */
     public function setDataFromArray($data)
@@ -114,8 +115,7 @@ class Email
 
     /**
      * Get id
-     *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -124,7 +124,7 @@ class Email
 
     /**
      * Set dateSent
-     *
+     * @param \DateTime
      * @return Email
      */
     public function setDateSent($dateSent)
@@ -136,7 +136,6 @@ class Email
 
     /**
      * Get dateSent
-     *
      * @return \DateTime
      */
     public function getDateSent()
@@ -146,7 +145,7 @@ class Email
 
     /**
      * Set subject
-     *
+     * @param string
      * @return Email
      */
     public function setSubject($subject)
@@ -158,7 +157,6 @@ class Email
 
     /**
      * Get subject
-     *
      * @return string
      */
     public function getSubject()
@@ -168,7 +166,7 @@ class Email
 
     /**
      * Set sentFrom
-     *
+     * @param string
      * @return Email
      */
     public function setSentFrom($sentFrom)
@@ -180,8 +178,7 @@ class Email
 
     /**
      * Get sentFrom
-     *
-     * @return string
+     * @return string|null
      */
     public function getSentFrom()
     {
@@ -190,7 +187,7 @@ class Email
 
     /**
      * Set sentTo
-     *
+     * @param string
      * @return Email
      */
     public function setSentTo($sentTo)
@@ -202,8 +199,7 @@ class Email
 
     /**
      * Get sentTo
-     *
-     * @return string
+     * @return string|null
      */
     public function getSentTo()
     {
@@ -212,7 +208,7 @@ class Email
 
     /**
      * Set sentCc
-     *
+     * @param string
      * @return Email
      */
     public function setSentCc($sentCc)
@@ -224,7 +220,6 @@ class Email
 
     /**
      * Get sentCc
-     *
      * @return string|null
      */
     public function getSentCc()
@@ -234,7 +229,7 @@ class Email
 
     /**
      * Set sentBcc
-     *
+     * @param string
      * @return Email
      */
     public function setSentBcc($sentBcc)
@@ -246,17 +241,16 @@ class Email
 
     /**
      * Get sentBcc
-     *
      * @return string|null
      */
     public function getSentBcc()
     {
-        return $this->sentBcc;
+        return $this->sentBcc == '' ? null : $this->sentBcc;
     }
 
     /**
      * Set replyTo
-     *
+     * @param string
      * @return Email
      */
     public function setReplyTo($replyTo)
@@ -268,7 +262,6 @@ class Email
 
     /**
      * Get replyTo
-     *
      * @return string
      */
     public function getReplyTo()
@@ -278,7 +271,7 @@ class Email
 
     /**
      * Set body
-     *
+     * @param string
      * @return Email
      */
     public function setBody($body)
@@ -290,7 +283,6 @@ class Email
 
     /**
      * Get body
-     *
      * @return string
      */
     public function getBody()
@@ -300,7 +292,7 @@ class Email
 
     /**
      * Set ip
-     *
+     * @param string
      * @return Email
      */
     public function setIp($ip)
@@ -312,7 +304,6 @@ class Email
 
     /**
      * Get ip
-     *
      * @return string
      */
     public function getIp()

@@ -1,5 +1,13 @@
 # Changelog
 
+v1.16.2.2
+---------
+- Adjusted documentation (21/08/2018)
+- Removed FQCN (21/08/2018)
+- Moved methods calls, in `EmailService`, from __construct() to create() (21/08/2018)
+- Removed pagination form `getEmails()` and moved it in Controller (21/08/2018)
+- Get back to auto-wire services (even if not Best Practices, it's easier and simplier...) (21/08/2018)
+
 v1.16.2.1
 ---------
 - Added link to BuyMeCoffee

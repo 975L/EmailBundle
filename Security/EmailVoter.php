@@ -14,34 +14,44 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use c975L\EmailBundle\Entity\Email;
 
+/**
+ * Entity ContactForm (not linked to a db)
+ * @author Laurent Marquet <laurent.marquet@laposte.net>
+ * @copyright 2017 975L <contact@975l.com>
+ */
 class EmailVoter extends Voter
 {
     /**
-     * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
+     * @var AccessDecisionManagerInterface
      */
     private $decisionManager;
 
     /**
+     * The role needed to be allowed access (defined in config)
      * @var string
      */
     private $roleNeeded;
 
     /**
+     * Used for access to dashboard
      * @var string
      */
     public const DASHBOARD = 'dashboard';
 
     /**
+     * Used for access to display of email
      * @var string
      */
     public const DISPLAY = 'display';
 
     /**
+     * Used for access to help
      * @var string
      */
     public const HELP = 'help';
 
     /**
+     * Contains all the available attributes to check with in supports()
      * @var array
      */
     private const ATTRIBUTES = array(
@@ -56,6 +66,10 @@ class EmailVoter extends Voter
         $this->roleNeeded = $roleNeeded;
     }
 
+    /**
+     * Checks if attribute and subject are supported
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         if (null !== $subject) {
@@ -65,6 +79,11 @@ class EmailVoter extends Voter
         return in_array($attribute, self::ATTRIBUTES);
     }
 
+    /**
+     * Votes if access is granted
+     * @return bool
+     * @throws \LogicException
+     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         //Defines access rights

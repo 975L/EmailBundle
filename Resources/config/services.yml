@@ -1,19 +1,15 @@
 services:
     _defaults:
-        autowire: false
+        autowire: true
         autoconfigure: true
 
-    c975L\EmailBundle\Controller\EmailController: ~
+    c975L\EmailBundle\Controller\:
+        resource: '../../Controller/*'
 
-    c975L\EmailBundle\Security\EmailVoter:
-        arguments:
-            $decisionManager: '@Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface'
+    c975L\EmailBundle\Security\:
+        resource: '../../Security/*'
+        bind:
             $roleNeeded: '%c975_l_email.roleNeeded%'
 
-    c975L\EmailBundle\Service\EmailService:
-        arguments:
-            $em: '@Doctrine\ORM\EntityManagerInterface'
-            $mailer: '@Swift_Mailer'
-            $paginator: '@Knp\Component\Pager\PaginatorInterface'
-
-    c975L\EmailBundle\Service\EmailServiceInterface: '@c975L\EmailBundle\Service\EmailService'
+    c975L\EmailBundle\Service\:
+        resource: '../../Service/*'

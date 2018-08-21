@@ -9,6 +9,11 @@
 
 namespace c975L\EmailBundle\Service;
 
+/**
+ * Interface to be called for DI for Email Main related services
+ * @author Laurent Marquet <laurent.marquet@laposte.net>
+ * @copyright 2018 975L <contact@975l.com>
+ */
 interface EmailServiceInterface
 {
     /**
@@ -18,9 +23,9 @@ interface EmailServiceInterface
 
     /**
      * Gets the emails
-     * @return \Knp\Component\Pager\PaginatorInterface
+     * @return array
      */
-    public function getEmails(int $number);
+    public function getEmails();
 
     /**
      * Persists Email in DB
@@ -29,15 +34,13 @@ interface EmailServiceInterface
 
     /**
      * Creates and sends the email
-     *
-     * @return boolean
+     * @return bool
      */
     public function send(array $emailData, bool $saveDatabase = false);
 
     /**
      * Validates email addresses and creates message
-     *
-     * @return boolean
+     * @return bool
      */
     public function validate(array $emailData);
 }

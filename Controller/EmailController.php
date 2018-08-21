@@ -17,40 +17,48 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Knp\Component\Pager\PaginatorInterface;
 use c975L\EmailBundle\Entity\Email;
 use c975L\EmailBundle\Service\EmailServiceInterface;
 
 /**
- * @copyright 2018: 975L <contact@975l.com>
+ * Main Controller class
  * @author Laurent Marquet <laurent.marquet@laposte.net>
+ * @copyright 2018 975L <contact@975l.com>
  */
 class EmailController extends Controller
 {
 //DASHBOARD
     /**
      * Displays the dashboard
-     *
      * @return Response
+     * @throws AccessDeniedException
      *
      * @Route("/email/dashboard",
      *      name="email_dashboard")
      * @Method({"GET", "HEAD"})
      */
-    public function dashboard(Request $request, EmailServiceInterface $emailService)
+    public function dashboard(Request $request, EmailServiceInterface $emailService, PaginatorInterface $paginator)
     {
         $this->denyAccessUnlessGranted('dashboard', null);
 
         //Renders the dashboard
+        $emails = $paginator->paginate(
+            $emailService->getEmails(),
+            $request->query->getInt('p', 1),
+            50
+        );
         return $this->render('@c975LEmail/pages/dashboard.html.twig', array(
-            'emails' => $emailService->getEmails($request->query->getInt('p', 1)),
+            'emails' => $emails,
         ));
     }
 
 //DISPLAY
     /**
-     * Displays the email
-     *
+     * Displays the email corresponding to its id
      * @return Response
+     * @throws AccessDeniedException
      *
      * @Route("/email/{id}",
      *      name="email_display",
@@ -72,8 +80,8 @@ class EmailController extends Controller
 //HELP
     /**
      * Displays the help
-     *
      * @return Response
+     * @throws AccessDeniedException
      *
      * @Route("/email/help",
      *      name="email_help")
