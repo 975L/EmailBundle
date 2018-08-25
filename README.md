@@ -13,7 +13,6 @@ EmailBundle does the following:
 
 [EmailBundle API documentation](https://975l.com/apidoc/c975L/EmailBundle.html).
 
-
 Bundle installation
 ===================
 

@@ -14,9 +14,6 @@
             <thead>
                 <tr>
                     <th class="text-center">
-                        {{ knp_pagination_sortable(emails, 'Id', 'e.id') }}&nbsp;<span class="fas fa-sort"></span>
-                    </th>
-                    <th class="text-center">
                         <span class="fas fa-eye"></span>&nbsp;{{ knp_pagination_sortable(emails, 'label.subject'|trans, 'subject') }}&nbsp;<span class="fas fa-sort"></span>
                     </th>
                     <th class="text-center">
@@ -30,13 +27,9 @@
             <tbody>
                 {% for email in emails %}
                     <tr>
-{# Id #}
-                        <td class="text-center">
-                            {{ email.id }}
-                        </td>
 {# Subject & Display #}
                         <td class="text-center">
-                            <a href="{{ path('email_display', {'id': email.id}) }}" title="{{ 'label.display'|trans({}, 'toolbar') }}">{{ email.subject }}</a>
+                            {{ toolbar_button_text(path('email_display', {'id': email.id}), 'display', 'sm', 'true', 'right', email.subject) }}
                         </td>
 {# Sent to #}
                         <td class="text-center">

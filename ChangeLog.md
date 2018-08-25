@@ -1,5 +1,10 @@
 # Changelog
 
+v1.16.3
+-------
+- Replaced links in dashboard by buttons (25/08/2018)
+- Removed id display in dashboard (25/08/2018)
+
 v1.16.2.3
 ---------
 - Corrected documentation for Voter (21/08/2018)
