@@ -1,5 +1,10 @@
 # Changelog
 
+v1.16.4
+-------
+- Removed 'true ===' as not needed (25/08/2018)
+- Added dependency on "c975l/config-bundle" and "c975l/services-bundle" (26/08/2018)
+
 v1.16.3
 -------
 - Replaced links in dashboard by buttons (25/08/2018)

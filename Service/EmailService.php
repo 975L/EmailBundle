@@ -88,7 +88,7 @@ class EmailService implements EmailServiceInterface
      */
     public function persist(bool $saveDatabase)
     {
-        if (true === $saveDatabase) {
+        if ($saveDatabase) {
             $this->em->persist($this->email);
             $this->em->flush();
         }

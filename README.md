@@ -130,7 +130,7 @@ class AnyController extends Controller
         $emailSent = $emailService->send($emailData, [saveDatabase ? true|false(default)]);
 
         //You can test if email has been sent
-        if ($emailSent === true) {
+        if ($emailSent) {
             //Do what you need...
         } else {
             //Do what you need...
