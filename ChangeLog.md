@@ -1,5 +1,9 @@
 # Changelog
 
+v2.0.2
+------
+- Added bundle root for Voter to keep unicity (30/08/2018)
+
 v2.0.1
 ------
 - Added information in `UPGRADE.md` (30/08/2018)
