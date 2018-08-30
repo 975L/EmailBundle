@@ -7,5 +7,5 @@ c975LEmail:
     sentFrom:
         type: string
         required: true
-        default: ~
+        default: null
         info: "Email address used to send emails: i.e. contact@example.com"

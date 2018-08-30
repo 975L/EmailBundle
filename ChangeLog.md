@@ -1,5 +1,9 @@
 # Changelog
 
+v2.0.1
+------
+- Added information in `UPGRADE.md` (30/08/2018)
+
 v2.0
 ----
 **Upgrading from v1.x? Check UPGRADE.md**
