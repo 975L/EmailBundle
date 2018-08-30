@@ -1,5 +1,9 @@
 # Changelog
 
+v1.16.5
+-------
+- Fixed small things (30/08/2018)
+
 v1.16.4
 -------
 - Removed 'true ===' as not needed (25/08/2018)

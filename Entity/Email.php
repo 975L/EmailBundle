@@ -101,9 +101,8 @@ class Email
 
     /**
      * Hydrates entity from associative array
-     * @param array $data
      */
-    public function setDataFromArray($data)
+    public function setDataFromArray(array $data)
     {
         foreach ($data as $key => $value) {
             $method = 'set' . ucfirst($key);

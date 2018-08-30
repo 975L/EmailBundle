@@ -12,7 +12,6 @@ namespace c975L\EmailBundle\Service;
 use Swift_Message;
 use Swift_Mailer;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
@@ -28,7 +27,7 @@ use c975L\EmailBundle\Service\EmailServiceInterface;
 class EmailService implements EmailServiceInterface
 {
     /**
-     * Stores EntityManager
+     * Stores EntityManagerInterface
      * @var EntityManagerInterface
      */
     private $em;

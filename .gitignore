@@ -5,3 +5,6 @@ vendor
 Tests/cache
 Tests/coverage
 Tests/logs
+Tests/AppKernel.php
+Tests/Controller/
+Tests/config/
