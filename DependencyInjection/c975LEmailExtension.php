@@ -29,11 +29,5 @@ class c975LEmailExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yml');
-
-        $configuration = new Configuration();
-        $processedConfig = $this->processConfiguration($configuration, $configs);
-
-        $container->setParameter('c975_l_email.sentFrom', $processedConfig['sentFrom']);
-        $container->setParameter('c975_l_email.roleNeeded', $processedConfig['roleNeeded']);
     }
 }

@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Knp\Component\Pager\PaginatorInterface;
+use c975L\ConfigBundle\Service\ConfigServiceInterface;
 use c975L\EmailBundle\Entity\Email;
 use c975L\EmailBundle\Service\EmailServiceInterface;
 
@@ -74,6 +75,39 @@ class EmailController extends Controller
         //Renders the email
         return $this->render('@c975LEmail/pages/display.html.twig', array(
             'email' => $email,
+        ));
+    }
+
+//CONFIG
+    /**
+     * Displays the configuration
+     * @return Response
+     * @throws AccessDeniedException
+     *
+     * @Route("/email/config",
+     *      name="email_config")
+     * @Method({"GET", "HEAD", "POST"})
+     */
+    public function config(Request $request, ConfigServiceInterface $configService)
+    {
+        $this->denyAccessUnlessGranted('config', null);
+
+        //Defines form
+        $form = $configService->createForm('c975l/email-bundle');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Validates config
+            $configService->setConfig($form);
+
+            //Redirects
+            return $this->redirectToRoute('email_dashboard');
+        }
+
+        //Renders the config form
+        return $this->render('@c975LConfig/forms/config.html.twig', array(
+            'form' => $form->createView(),
+            'toolbar' => '@c975LEmail',
         ));
     }
 

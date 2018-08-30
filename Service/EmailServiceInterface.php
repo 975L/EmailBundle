@@ -28,6 +28,13 @@ interface EmailServiceInterface
     public function getEmails();
 
     /**
+     * Returns the value of parameter
+     * @return mixed
+     * @throws \LogicException
+     */
+    public function getParameter(string $parameter);
+
+    /**
      * Persists Email in DB
      */
     public function persist(bool $saveDatabase);

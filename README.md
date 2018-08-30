@@ -47,16 +47,9 @@ Step 3: Configure the Bundles
 -----------------------------
 Check [Swiftmailer](https://github.com/symfony/swiftmailer-bundle) and [Doctrine](https://github.com/doctrine/DoctrineBundle) for their specific configuration
 
-Then, in the `app/config.yml` file of your project, define the following:
+v2.0+ of c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
 
-```yml
-#EmailBundle
-c975_l_email:
-    #Email address used to send emails
-    sentFrom: 'contact@example.com'
-    #User's role needed to enable access to view emails sent
-    roleNeeded: 'ROLE_ADMIN'
-```
+**Upgrading from v1.x? Check UPGRADE.md.**
 
 Step 4: Enable the Routes
 -------------------------
@@ -114,7 +107,7 @@ class AnyController extends Controller
             ));
         $emailData = array(
             'subject' => 'YOUR_SUBJECT',
-            'sentFrom' => $this->getParameter('c975_l_email.sentFrom'),
+            'sentFrom' => $emailService->getParameter('c975LEmail.sentFrom'), //Upgrading from v1.x? Check UPGRADE.md
             'sentTo' => 'contact@example.com',
             'sentCc' => 'contact@example.com', //optional
             'sentBcc' => 'contact@example.com', //optional

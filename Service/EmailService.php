@@ -16,6 +16,7 @@ use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
+use c975L\ConfigBundle\Service\ConfigServiceInterface;
 use c975L\EmailBundle\Entity\Email;
 use c975L\EmailBundle\Service\EmailServiceInterface;
 
@@ -26,6 +27,11 @@ use c975L\EmailBundle\Service\EmailServiceInterface;
  */
 class EmailService implements EmailServiceInterface
 {
+    /**
+     * Stores ConfigServiceInterface
+     * @var ConfigServiceInterface
+     */
+    private $configService;
     /**
      * Stores EntityManagerInterface
      * @var EntityManagerInterface
@@ -51,10 +57,12 @@ class EmailService implements EmailServiceInterface
     private $message;
 
     public function __construct(
+        ConfigServiceInterface $configService,
         EntityManagerInterface $em,
         Swift_Mailer $mailer
     )
     {
+        $this->configService = $configService;
         $this->em = $em;
         $this->mailer = $mailer;
     }
@@ -80,6 +88,14 @@ class EmailService implements EmailServiceInterface
             ->getRepository('c975LEmailBundle:Email')
             ->findAll(array(), array('dateSent' => 'DESC'))
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getParameter(string $parameter)
+    {
+        return $this->configService->getParameter($parameter);
     }
 
     /**

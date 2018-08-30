@@ -12,6 +12,7 @@ namespace c975L\EmailBundle\Security;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use c975L\ConfigBundle\Service\ConfigServiceInterface;
 use c975L\EmailBundle\Entity\Email;
 
 /**
@@ -22,15 +23,22 @@ use c975L\EmailBundle\Entity\Email;
 class EmailVoter extends Voter
 {
     /**
+     * Stores ConfigServiceInterface
+     * @var ConfigServiceInterface
+     */
+    private $configService;
+
+    /**
+     * Stores AccessDecisionManagerInterface
      * @var AccessDecisionManagerInterface
      */
     private $decisionManager;
 
     /**
-     * The role needed to be allowed access (defined in config)
+     * Used for access to config
      * @var string
      */
-    private $roleNeeded;
+    public const CONFIG = 'config';
 
     /**
      * Used for access to dashboard
@@ -55,15 +63,19 @@ class EmailVoter extends Voter
      * @var array
      */
     private const ATTRIBUTES = array(
+        self::CONFIG,
         self::DASHBOARD,
         self::DISPLAY,
         self::HELP,
     );
 
-    public function __construct(AccessDecisionManagerInterface $decisionManager, string $roleNeeded)
+    public function __construct(
+        ConfigServiceInterface $configService,
+        AccessDecisionManagerInterface $decisionManager
+    )
     {
+        $this->configService = $configService;
         $this->decisionManager = $decisionManager;
-        $this->roleNeeded = $roleNeeded;
     }
 
     /**
@@ -88,10 +100,12 @@ class EmailVoter extends Voter
     {
         //Defines access rights
         switch ($attribute) {
+            case self::CONFIG:
             case self::DASHBOARD:
             case self::DISPLAY:
             case self::HELP:
-                return $this->decisionManager->decide($token, array($this->roleNeeded));
+                return $this->decisionManager->decide($token, array($this->configService->getParameter('c975LEmail.roleNeeded', 'c975l/email-bundle')));
+                break;
         }
 
         throw new \LogicException('Invalid attribute: ' . $attribute);

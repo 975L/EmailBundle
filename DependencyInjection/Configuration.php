@@ -22,17 +22,6 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('c975_l_email');
-
-        $rootNode
-            ->children()
-                ->scalarNode('sentFrom')
-                ->end()
-                ->scalarNode('roleNeeded')
-                    ->defaultValue('ROLE_ADMIN')
-                ->end()
-            ->end()
-        ;
 
         return $treeBuilder;
     }

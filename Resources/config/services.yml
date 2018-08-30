@@ -8,8 +8,6 @@ services:
 
     c975L\EmailBundle\Security\:
         resource: '../../Security/*'
-        bind:
-            $roleNeeded: '%c975_l_email.roleNeeded%'
 
     c975L\EmailBundle\Service\:
         resource: '../../Service/*'

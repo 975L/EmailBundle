@@ -1,0 +1,11 @@
+c975LEmail:
+    roleNeeded:
+        type: string
+        required: true
+        default: ROLE_ADMIN
+        info: "User's role needed to enable access to view emails sent: i.e. ROLE_ADMIN (default)"
+    sentFrom:
+        type: string
+        required: true
+        default: ~
+        info: "Email address used to send emails: i.e. contact@example.com"

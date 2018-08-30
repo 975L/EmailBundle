@@ -1,5 +1,21 @@
 # Changelog
 
+v2.0
+----
+**Upgrading from v1.x? Check UPGRADE.md**
+- Created branch 1.x (30/08/2018)
+- Made use of c975L/ConfigBundle (30/08/2018)
+- Added Route `email_config` + link in toolbar(30/08/2018)
+- Removed declaration of parameters in Configuration class as they are end-user parameters and defined in c975L/ConfigBundle (30/08/2018)
+- Updated `README.md` (30/08/2018)
+- Added `UPGRADE.md` (30/08/2018)
+- Added shortcut method `getParameter()` to c975L/ConfigBundle `getParameter()` to avoid injection of its ConfigServiceInterface
+
+
+
+v1.x
+====
+
 v1.16.5
 -------
 - Fixed small things (30/08/2018)
