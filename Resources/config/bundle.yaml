@@ -3,7 +3,7 @@ c975LEmail:
         type: string
         required: true
         default: ROLE_ADMIN
-        info: "User's role needed to enable access to view emails sent: i.e. ROLE_ADMIN (default)"
+        info: "User's role needed to enable access to data linked to EmailBundle: i.e. ROLE_ADMIN (default)"
     sentFrom:
         type: string
         required: true
