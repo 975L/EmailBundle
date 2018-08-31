@@ -38,25 +38,25 @@ class EmailVoter extends Voter
      * Used for access to config
      * @var string
      */
-    public const CONFIG = 'c975lEmail-config';
+    public const CONFIG = 'c975LEmail-config';
 
     /**
      * Used for access to dashboard
      * @var string
      */
-    public const DASHBOARD = 'c975lEmail-dashboard';
+    public const DASHBOARD = 'c975LEmail-dashboard';
 
     /**
      * Used for access to display of email
      * @var string
      */
-    public const DISPLAY = 'c975lEmail-display';
+    public const DISPLAY = 'c975LEmail-display';
 
     /**
      * Used for access to help
      * @var string
      */
-    public const HELP = 'c975lEmail-help';
+    public const HELP = 'c975LEmail-help';
 
     /**
      * Contains all the available attributes to check with in supports()

@@ -42,7 +42,7 @@ class EmailController extends Controller
      */
     public function dashboard(Request $request, EmailServiceInterface $emailService, PaginatorInterface $paginator)
     {
-        $this->denyAccessUnlessGranted('c975lEmail-dashboard', null);
+        $this->denyAccessUnlessGranted('c975LEmail-dashboard', null);
 
         //Renders the dashboard
         $emails = $paginator->paginate(
@@ -70,7 +70,7 @@ class EmailController extends Controller
      */
     public function display(Email $email)
     {
-        $this->denyAccessUnlessGranted('c975lEmail-display', $email);
+        $this->denyAccessUnlessGranted('c975LEmail-display', $email);
 
         //Renders the email
         return $this->render('@c975LEmail/pages/display.html.twig', array(
@@ -90,7 +90,7 @@ class EmailController extends Controller
      */
     public function config(Request $request, ConfigServiceInterface $configService)
     {
-        $this->denyAccessUnlessGranted('c975lEmail-config', null);
+        $this->denyAccessUnlessGranted('c975LEmail-config', null);
 
         //Defines form
         $form = $configService->createForm('c975l/email-bundle');
@@ -123,7 +123,7 @@ class EmailController extends Controller
      */
     public function help()
     {
-        $this->denyAccessUnlessGranted('c975lEmail-help', null);
+        $this->denyAccessUnlessGranted('c975LEmail-help', null);
 
         //Renders the help
         return $this->render('@c975LEmail/pages/help.html.twig');

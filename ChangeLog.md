@@ -1,6 +1,9 @@
 # Changelog
 
+v2.0.3
+------
 - Update `UPGRADE.md` (30/08/2018)
+- Fixed Voter constants (31/08/2018)
 
 v2.0.2
 ------
