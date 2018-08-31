@@ -4,7 +4,7 @@ EmailBundle
 EmailBundle does the following:
 
 - Stores email in a database as an option,
-- Sends email using  [SwiftMailer](https://github.com/symfony/swiftmailer-bundle),
+- Sends email using [SwiftMailer](https://github.com/symfony/swiftmailer-bundle),
 - Allows user with good ROLE to see emails sent,
 - Defines a template for emails that should be overriden to integrate fully with website,
 - Allows to attach one or multiple files.
@@ -23,8 +23,8 @@ Use [Composer](https://getcomposer.org) to install the library
     composer require c975l/email-bundle
 ```
 
-Step 2: Enable the Bundles
---------------------------
+Step 2: Enable the Bundle
+-------------------------
 Then, enable the bundle by adding it to the list of registered bundles in the `app/AppKernel.php` file of your project:
 
 ```php
@@ -35,8 +35,6 @@ class AppKernel extends Kernel
     {
         $bundles = [
             // ...
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new c975L\EmailBundle\c975LEmailBundle(),
         ];
     }
@@ -45,11 +43,14 @@ class AppKernel extends Kernel
 
 Step 3: Configure the Bundles
 -----------------------------
-Check [Swiftmailer](https://github.com/symfony/swiftmailer-bundle) and [Doctrine](https://github.com/doctrine/DoctrineBundle) for their specific configuration
+Check dependencies for their configuration:
+- [Swiftmailer](https://github.com/symfony/swiftmailer-bundle)
+- [Doctrine](https://github.com/doctrine/DoctrineBundle)
+- [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
 
 v2.0+ of c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
 
-**Upgrading from v1.x? Check UPGRADE.md.**
+**Upgrading from v1.x? Check [UPGRADE.md](UPGRADE.md).**
 
 Step 4: Enable the Routes
 -------------------------
