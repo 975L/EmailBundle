@@ -1,5 +1,9 @@
 # Changelog
 
+v1.16.6
+-------
+- Fixed Voter constant (31/08/2018)
+
 v1.16.5
 -------
 - Fixed small things (30/08/2018)
