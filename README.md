@@ -144,6 +144,7 @@ If you wish to override/disable a block defined in the `fullLayout.html.twig` te
 
 {# Overide a block #}
 {% block noSpam %}
+    {# You can also use {{ parent() }} #}
     {# YOUR_OWN_TEXT #}
 {% endblock %}
 
