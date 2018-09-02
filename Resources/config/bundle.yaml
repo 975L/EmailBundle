@@ -9,3 +9,26 @@ c975LEmail:
         required: true
         default: null
         info: "Email address used to send emails: i.e. contact@example.com"
+c975LCommon:
+    site:
+        type: string
+        required: false
+        default: null
+        info: "Name of the web site: i.e. Example.com"
+    author:
+        type: string
+        required: false
+        default: null
+        info: "The author that will be set in the meta data"
+    firstOnlineDate:
+        type: date
+        required: false
+        default: null
+        info: "The date the site has been put online"
+        startYear: 1990
+        endYear: current
+    logo:
+        type: string
+        required: false
+        default: null
+        info: "Path for the logo to be display in email (recommended): i.e. images/logo.png (Default: null)"
