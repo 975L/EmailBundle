@@ -108,7 +108,7 @@ class AnyController extends Controller
             ));
         $emailData = array(
             'subject' => 'YOUR_SUBJECT',
-            'sentFrom' => $emailService->getParameter('c975LEmail.sentFrom'), //Upgrading from v1.x? Check UPGRADE.md
+            'sentFrom' => $emailService->getParameter('c975LEmail.sentFrom'),
             'sentTo' => 'contact@example.com',
             'sentCc' => 'contact@example.com', //optional
             'sentBcc' => 'contact@example.com', //optional
@@ -137,52 +137,21 @@ class AnyController extends Controller
 
 Email messages templates
 ------------------------
-To avoid too much overiding and keep it simple to use, it's a bit tricky to understand the setup.
+If you wish to override/disable a block defined in the `fullLayout.html.twig` template, create your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` and use the following code:
 
-You **must** override `Resources/views/emails/layout.html.twig` with `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` as `@c975lEmail/emails/layout.html.twig` is an empty shell extended by other bundles (see example above).
-
-Insert the following code in the overriden file `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`:
-
-EmailBundle use the following variables to display information through the email template. If you don't set them, they will be ignored.
 ```twig
 {% extends "@c975LEmail/emails/fullLayout.html.twig" %}
 
-{% set site = 'YOUR_SITE_NAME' %}
-{% set email = 'THE_EMAIL_YOU_SEND_FROM' %} {# Should be the same as the one defined in config.yml > sentFrom #}
-{% set author = 'AUTHOR' %}
-{% set firstOnlineDate = 'YYYY-MM-DD' %}
-{% set logo = absolute_url(asset('images/og-image.png')) %}
-
-{# If you want to wrap the email content with a special div, class, etc., just override the block like this #}
-{% block content %}
-    <div class="container">
-        {% block hello %}
-            {{ parent() }}
-        {% endblock %}
-        {% block email_content %}
-        {% endblock %}
-    </div>
-{% endblock %}
-```
-
-Overide a block
----------------
-You can overide any block in the template, to do so, simply add the following in your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`, you can still use the `{{ parent() }}` Twig function:
-```twig
+{# Overide a block #}
 {% block noSpam %}
     {# YOUR_OWN_TEXT #}
 {% endblock %}
-```
-Have a look at `Resources/views/emails/fullLayout.html.twig`, to see all available blocks.
 
-Disable a block
----------------
-To disable a block, simply add the following in your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`:
-```twig
+{# Disable a block #}
 {% block logo %}
 {% endblock %}
 ```
-Have a look at `Resources/views/layout.html.twig`, to see all available blocks.
+Have a look at `Resources/views/emails/fullLayout.html.twig`, to see all available blocks.
 
 Footer template
 ---------------

@@ -1,5 +1,24 @@
 {% trans_default_domain 'email' %}
 
+{# Gets data from parameters set via c975L/ConfigBundle #}
+{# Keeps compatibility with <v2.1 where the values were set directly in the Twig template #}
+{# In case both are defined, those set via c975L/ConfigBundle will be used #}
+{% if config('c975LCommon.site') != null %}
+    {% set site = config('c975LCommon.site') %}
+{% endif %}
+{% if config('c975LEmail.sentFrom') != null %}
+    {% set email = config('c975LEmail.sentFrom') %}
+{% endif %}
+{% if config('c975LCommon.author') != null %}
+    {% set author = config('c975LCommon.author') %}
+{% endif %}
+{% if config('c975LCommon.firstOnlineDate') != null %}
+    {% set firstOnlineDate = config('c975LCommon.firstOnlineDate') %}
+{% endif %}
+{% if config('c975LCommon.logo') != null %}
+    {% set logo = config('c975LCommon.logo') %}
+{% endif %}
+
 {# Copyright #}
 {% if firstOnlineDate is defined %}
     {% set copyright = '© ' ~ firstOnlineDate|date('Y') ~ ' - ' ~  'now'|date('Y') %}

@@ -32,6 +32,7 @@ class EmailService implements EmailServiceInterface
      * @var ConfigServiceInterface
      */
     private $configService;
+
     /**
      * Stores EntityManagerInterface
      * @var EntityManagerInterface
