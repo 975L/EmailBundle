@@ -1,9 +1,12 @@
 # Changelog
 
+v2.1
+----
 - Updated `README.md` (31/08/2018)
 - Updated `UPGRADE.md` (01/09/2018)
 - Updated composer.json (01/09/2018)
 - Added common parameters in `bundle.yaml` (02/09/2018)
+- Added use of common parameters (02/09/2018)
 
 v2.0.4
 ------

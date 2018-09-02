@@ -1,5 +1,9 @@
 # UPGRADE
 
+v2.0.x > v2.1
+-------------
+- As the parameters used in the template for the email are set via c975L/ConfigBundle, you don't need anymore to override `Resources/views/emails/layout.html.twig` with your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`, so you can delete it, unless you want to override/disable a block, refer to `README.md` for this.
+
 v1.x > v2.x
 -----------
 When upgrading from v1.x to v2.x you should(must) do the following if they apply to your case:
