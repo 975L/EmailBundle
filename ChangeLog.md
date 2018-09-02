@@ -1,6 +1,7 @@
 # Changelog
 
 - Updated `README.md` (02/09/2018)
+- Corrected `logo` declaration (02/09/2018)
 
 v2.1
 ----

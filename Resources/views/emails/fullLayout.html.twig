@@ -16,7 +16,7 @@
     {% set firstOnlineDate = config('c975LCommon.firstOnlineDate') %}
 {% endif %}
 {% if config('c975LCommon.logo') != null %}
-    {% set logo = config('c975LCommon.logo') %}
+    {% set logo = absolute_url(asset(config('c975LCommon.logo'))) %}
 {% endif %}
 
 {# Copyright #}
