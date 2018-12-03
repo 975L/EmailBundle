@@ -41,8 +41,8 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Configure the Bundles
------------------------------
+Step 3: Configure the Bundle
+----------------------------
 Check dependencies for their configuration:
 - [Swiftmailer](https://github.com/symfony/swiftmailer-bundle)
 - [Doctrine](https://github.com/doctrine/DoctrineBundle)
