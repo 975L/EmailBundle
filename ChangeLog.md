@@ -1,5 +1,9 @@
 # Changelog
 
+v2.1.2
+------
+- Modified required versions in `composer.json` (25/12/2018)
+
 v2.1.1
 ------
 - Updated `README.md` (02/09/2018)
