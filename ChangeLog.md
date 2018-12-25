@@ -1,5 +1,7 @@
 # Changelog
 
+v2.1.1
+------
 - Updated `README.md` (02/09/2018)
 - Corrected `logo` declaration (02/09/2018)
 - Corrected `UPGRADE.md` for `php bin/console config:create` (03/12/2018)
