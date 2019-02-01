@@ -75,6 +75,8 @@ DELIMITER ;
 
 -- ------------------------------------------------------------------------
 -- Event to be scheduled to launch automatically the process of archiving -
+-- To enable the event_scheduler you have to run the following (with SUPER privileges)
+-- SET GLOBAL event_scheduler = ON;
 -- ------------------------------------------------------------------------
 DROP EVENT IF EXISTS e_monthly_archives;
 CREATE EVENT e_monthly_archives

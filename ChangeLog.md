@@ -1,5 +1,9 @@
 # Changelog
 
+v2.1.2.1
+--------
+- Added information about enabling event_scheduler (01/02/2019)
+
 v2.1.2
 ------
 - Modified required versions in `composer.json` (25/12/2018)
