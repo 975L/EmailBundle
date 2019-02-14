@@ -1,5 +1,9 @@
 # Changelog
 
+v2.1.2.2
+--------
+- Modified Dependencyinjection rootNode to be not empty (13/02/2019)
+
 v2.1.2.1
 --------
 - Added information about enabling event_scheduler (01/02/2019)

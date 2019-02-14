@@ -95,8 +95,9 @@ Then in your Controller, add this code to create, insert in DB and send your ema
 // src/Controller/AnyController.php
 
 use c975L\EmailBundle\Service\EmailServiceInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class AnyController extends Controller
+class AnyController extends AbstractController
 {
     public function anyFunction(Request $request, EmailServiceInterface $emailService)
     {

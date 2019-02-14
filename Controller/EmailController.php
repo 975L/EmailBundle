@@ -9,11 +9,9 @@
 
 namespace c975L\EmailBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -28,17 +26,18 @@ use c975L\EmailBundle\Service\EmailServiceInterface;
  * @author Laurent Marquet <laurent.marquet@laposte.net>
  * @copyright 2018 975L <contact@975l.com>
  */
-class EmailController extends Controller
+class EmailController extends AbstractController
 {
 //DASHBOARD
+
     /**
      * Displays the dashboard
      * @return Response
      * @throws AccessDeniedException
      *
      * @Route("/email/dashboard",
-     *      name="email_dashboard")
-     * @Method({"GET", "HEAD"})
+     *      name="email_dashboard",
+     *      methods={"GET", "HEAD"})
      */
     public function dashboard(Request $request, EmailServiceInterface $emailService, PaginatorInterface $paginator)
     {
@@ -56,6 +55,7 @@ class EmailController extends Controller
     }
 
 //DISPLAY
+
     /**
      * Displays the email corresponding to its id
      * @return Response
@@ -63,10 +63,8 @@ class EmailController extends Controller
      *
      * @Route("/email/{id}",
      *      name="email_display",
-     *      requirements={
-     *          "id": "^([0-9]+)"
-     *      })
-     * @Method({"GET", "HEAD"})
+     *      requirements={"id": "^([0-9]+)"},
+     *      methods={"GET", "HEAD"})
      */
     public function display(Email $email)
     {
@@ -79,14 +77,15 @@ class EmailController extends Controller
     }
 
 //CONFIG
+
     /**
      * Displays the configuration
      * @return Response
      * @throws AccessDeniedException
      *
      * @Route("/email/config",
-     *      name="email_config")
-     * @Method({"GET", "HEAD", "POST"})
+     *      name="email_config",
+     *      methods={"GET", "HEAD", "POST"})
      */
     public function config(Request $request, ConfigServiceInterface $configService)
     {
@@ -112,14 +111,15 @@ class EmailController extends Controller
     }
 
 //HELP
+
     /**
      * Displays the help
      * @return Response
      * @throws AccessDeniedException
      *
      * @Route("/email/help",
-     *      name="email_help")
-     * @Method({"GET", "HEAD"})
+     *      name="email_help",
+     *      methods={"GET", "HEAD"})
      */
     public function help()
     {
