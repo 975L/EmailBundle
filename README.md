@@ -70,7 +70,7 @@ c975_l_email:
 
 Step 5: Create MySql table
 --------------------------
-Use `/Resources/sql/emails.sql` to create the tables `emails` and `emails_archives`. The `DROP TABLE` are commented to avoid dropping by mistake. It will also create a stored procedure `sp_EmailsArchive()` and an event `e_monthly_archives` to archives emails older than 90 days. If you don't want to use this feature, just remove them.
+You can use `php bin/console make:migration` to create the migration file as documented in [Symfony's Doctrine docs](https://symfony.com/doc/current/doctrine.html) OR use `/Resources/sql/emails.sql` to create the tables `emails` and `emails_archives`. The `DROP TABLE` are commented to avoid dropping by mistake. It will also create a stored procedure `sp_EmailsArchive()` and an event `e_monthly_archives` to archives emails older than 90 days. If you don't want to use this feature, just remove them.
 
 How to use
 ----------

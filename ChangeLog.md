@@ -1,5 +1,12 @@
 # Changelog
 
+v2.2
+----
+- Corrected type for `body` in Email Entity (15/02/2019)
+- Modified Entity to use typehint (15/02/2019)
+- Documented the possibility to use `php bin/console make:migration` (15/02/2019)
+- Corrected missing Route use (15/02/2019)
+
 v2.1.2.2
 --------
 - Modified Dependencyinjection rootNode to be not empty (13/02/2019)

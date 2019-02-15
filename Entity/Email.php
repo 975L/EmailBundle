@@ -9,6 +9,7 @@
 
 namespace c975L\EmailBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -87,7 +88,7 @@ class Email
      * Body of email
      * @var string
      *
-     * @ORM\Column(name="body", type="string", length=65000, nullable=true)
+     * @ORM\Column(name="body", type="text", length=65000, nullable=true)
      */
     protected $body;
 
@@ -116,17 +117,17 @@ class Email
      * Get id
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
      * Set dateSent
-     * @param \DateTime
+     * @param DateTime
      * @return Email
      */
-    public function setDateSent($dateSent)
+    public function setDateSent(?DateTime $dateSent)
     {
         $this->dateSent = $dateSent;
 
@@ -137,7 +138,7 @@ class Email
      * Get dateSent
      * @return \DateTime
      */
-    public function getDateSent()
+    public function getDateSent(): ?DateTime
     {
         return $this->dateSent;
     }
@@ -147,7 +148,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setSubject($subject)
+    public function setSubject(?string $subject)
     {
         $this->subject = $subject;
 
@@ -158,7 +159,7 @@ class Email
      * Get subject
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): ?string
     {
         return $this->subject;
     }
@@ -168,7 +169,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setSentFrom($sentFrom)
+    public function setSentFrom(?string $sentFrom)
     {
         $this->sentFrom = $sentFrom;
 
@@ -179,9 +180,9 @@ class Email
      * Get sentFrom
      * @return string|null
      */
-    public function getSentFrom()
+    public function getSentFrom(): ?string
     {
-        return $this->sentFrom == '' ? null : $this->sentFrom;
+        return '' === $this->sentFrom ? null : $this->sentFrom;
     }
 
     /**
@@ -189,7 +190,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setSentTo($sentTo)
+    public function setSentTo(?string $sentTo)
     {
         $this->sentTo = $sentTo;
 
@@ -200,9 +201,9 @@ class Email
      * Get sentTo
      * @return string|null
      */
-    public function getSentTo()
+    public function getSentTo(): ?string
     {
-        return $this->sentTo == '' ? null : $this->sentTo;
+        return '' === $this->sentTo ? null : $this->sentTo;
     }
 
     /**
@@ -210,7 +211,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setSentCc($sentCc)
+    public function setSentCc(?string $sentCc)
     {
         $this->sentCc = $sentCc;
 
@@ -221,9 +222,9 @@ class Email
      * Get sentCc
      * @return string|null
      */
-    public function getSentCc()
+    public function getSentCc(): ?string
     {
-        return $this->sentCc == '' ? null : $this->sentCc;
+        return '' === $this->sentCc ? null : $this->sentCc;
     }
 
     /**
@@ -231,7 +232,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setSentBcc($sentBcc)
+    public function setSentBcc(?string $sentBcc)
     {
         $this->sentBcc = $sentBcc;
 
@@ -242,9 +243,9 @@ class Email
      * Get sentBcc
      * @return string|null
      */
-    public function getSentBcc()
+    public function getSentBcc(): ?string
     {
-        return $this->sentBcc == '' ? null : $this->sentBcc;
+        return '' === $this->sentBcc ? null : $this->sentBcc;
     }
 
     /**
@@ -252,7 +253,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setReplyTo($replyTo)
+    public function setReplyTo(?string $replyTo)
     {
         $this->replyTo = $replyTo;
 
@@ -263,9 +264,9 @@ class Email
      * Get replyTo
      * @return string
      */
-    public function getReplyTo()
+    public function getReplyTo(): ?string
     {
-        return $this->replyTo == '' ? null : $this->replyTo;
+        return '' === $this->replyTo ? null : $this->replyTo;
     }
 
     /**
@@ -273,7 +274,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setBody($body)
+    public function setBody(?string $body)
     {
         $this->body = $body;
 
@@ -284,7 +285,7 @@ class Email
      * Get body
      * @return string
      */
-    public function getBody()
+    public function getBody(): ?string
     {
         return $this->body;
     }
@@ -294,7 +295,7 @@ class Email
      * @param string
      * @return Email
      */
-    public function setIp($ip)
+    public function setIp(?string $ip)
     {
         $this->ip = $ip;
 
@@ -305,7 +306,7 @@ class Email
      * Get ip
      * @return string
      */
-    public function getIp()
+    public function getIp(): ?string
     {
         return $this->ip;
     }
