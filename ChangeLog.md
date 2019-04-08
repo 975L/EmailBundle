@@ -1,5 +1,9 @@
 # Changelog
 
+v2.2.0.1
+--------
+- Changed Github's author reference url (08/04/2019)
+
 v2.2
 ----
 - Corrected type for `body` in Email Entity (15/02/2019)

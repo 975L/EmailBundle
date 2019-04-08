@@ -30,7 +30,6 @@ use c975L\EmailBundle\Service\EmailServiceInterface;
 class EmailController extends AbstractController
 {
 //DASHBOARD
-
     /**
      * Displays the dashboard
      * @return Response
@@ -56,7 +55,6 @@ class EmailController extends AbstractController
     }
 
 //DISPLAY
-
     /**
      * Displays the email corresponding to its id
      * @return Response
@@ -78,7 +76,6 @@ class EmailController extends AbstractController
     }
 
 //CONFIG
-
     /**
      * Displays the configuration
      * @return Response
@@ -112,7 +109,6 @@ class EmailController extends AbstractController
     }
 
 //HELP
-
     /**
      * Displays the help
      * @return Response
