@@ -1,5 +1,10 @@
 # Changelog
 
+v3.0.1
+------
+- Made use of KnpPagnigatorBundle v4 (15/07/2019)
+- Drop support of Symfony 3.x (15/07/2019)
+
 v3.0
 ----
 **Upgrading from v2.x? Check UPGRADE.md**

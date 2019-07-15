@@ -26,7 +26,7 @@
         "doctrine/doctrine-bundle": "^1",
         "doctrine/doctrine-cache-bundle": "^1",
         "doctrine/orm": "^2",
-        "knplabs/knp-paginator-bundle": "^2",
+        "knplabs/knp-paginator-bundle": "^4",
         "symfony/form": "*",
         "symfony/security": "*",
         "symfony/twig-bundle": "^4",
