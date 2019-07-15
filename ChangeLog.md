@@ -1,5 +1,9 @@
 # Changelog
 
+v2.2.0.2
+--------
+- Changed file rights (15/07/2019)
+
 v2.2.0.1
 --------
 - Changed Github's author reference url (08/04/2019)
