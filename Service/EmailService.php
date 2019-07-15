@@ -9,16 +9,16 @@
 
 namespace c975L\EmailBundle\Service;
 
-use Swift_Message;
-use Swift_Mailer;
+use c975L\ConfigBundle\Service\ConfigServiceInterface;
+use c975L\EmailBundle\Entity\Email;
+use c975L\EmailBundle\Service\EmailServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
 use Egulias\EmailValidator\Validation\RFCValidation;
-use c975L\ConfigBundle\Service\ConfigServiceInterface;
-use c975L\EmailBundle\Entity\Email;
-use c975L\EmailBundle\Service\EmailServiceInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email as Message;
 
 /**
  * Main services related to Email
@@ -47,7 +47,7 @@ class EmailService implements EmailServiceInterface
 
     /**
      * Stores mailer
-     * @var Swift_Mailer
+     * @var MailerInterface
      */
     private $mailer;
 
@@ -60,7 +60,7 @@ class EmailService implements EmailServiceInterface
     public function __construct(
         ConfigServiceInterface $configService,
         EntityManagerInterface $em,
-        Swift_Mailer $mailer
+        MailerInterface $mailer
     )
     {
         $this->configService = $configService;
@@ -77,7 +77,7 @@ class EmailService implements EmailServiceInterface
         $this->email->setDataFromArray($emailData);
         $this->email->setDateSent(new \DateTime());
 
-        $this->message = new \Swift_Message();
+        $this->message = new Message();
     }
 
     /**
@@ -125,12 +125,13 @@ class EmailService implements EmailServiceInterface
         $this->persist($saveDatabase);
 
         //Sends email
-        if ($this->message instanceof Swift_Message) {
+        if ($this->message instanceof Message) {
             $this->message
-                ->setFrom($this->email->getSentFrom())
-                ->setSubject($this->email->getSubject())
-                ->setBody($this->email->getBody())
-                ->setContentType('text/html');
+                ->from($this->email->getSentFrom())
+                ->subject($this->email->getSubject())
+                ->html($this->email->getBody())
+                ->priority(Message::PRIORITY_NORMAL)
+            ;
             $this->mailer->send($this->message);
 
             return true;
@@ -152,7 +153,7 @@ class EmailService implements EmailServiceInterface
 
         //Validates SentTo to not send email if not passed, to avoid spam
         if (null !== $this->email->getSentTo() && $validator->isValid($this->email->getSentTo(), $multipleValidations)) {
-            $this->message->setTo($this->email->getSentTo());
+            $this->message->to($this->email->getSentTo());
         } else {
             $this->message = false;
             return false;
@@ -161,7 +162,7 @@ class EmailService implements EmailServiceInterface
         //Validates ReplyTo to not send email if not passed, to avoid spam
         if (null !== $this->email->getReplyTo()) {
             if ($validator->isValid($this->email->getReplyTo(), $multipleValidations)) {
-                $this->message->setReplyTo($this->email->getReplyTo());
+                $this->message->replyTo($this->email->getReplyTo());
             } else {
                 $this->message = false;
                 return false;
@@ -170,18 +171,18 @@ class EmailService implements EmailServiceInterface
 
         //SentCC
         if (null !== $this->email->getSentCc() && $validator->isValid($this->email->getSentCc(), $multipleValidations)) {
-            $this->message->setCc($this->email->getSentCc());
+            $this->message->cc($this->email->getSentCc());
         }
 
         //Sent Bcc
         if (null !== $this->email->getSentBcc() && $validator->isValid($this->email->getSentBcc(), $multipleValidations)) {
-            $this->message->setBcc($this->email->getSentBcc());
+            $this->message->bcc($this->email->getSentBcc());
         }
 
         //Attach files
         if (array_key_exists('attach', $emailData) && is_array($emailData['attach'])) {
             foreach ($emailData['attach'] as $attach) {
-                $this->message->attach(new \Swift_Attachment($attach[0], $attach[1], $attach[2]));
+                $this->message->attachFromPath($attach[0], $attach[1], $attach[2]);
             }
         }
 

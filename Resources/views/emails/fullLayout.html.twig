@@ -31,6 +31,7 @@
 {% endif %}
 
 {% spaceless %}
+{% apply inline_css %}
 <!DOCTYPE html>
 {# Head #}
     <head>
@@ -132,4 +133,5 @@
         {% endblock %}
     </body>
 </html>
+{% endapply %}
 {% endspaceless %}

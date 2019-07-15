@@ -1,5 +1,9 @@
 # UPGRADE
 
+v2.x > v3.x
+-----------
+`c975LEmailBundle` now use `Symfony\Component\Mailer\MailerInterface`and `Symfony\Component\Mime\Email` which are NOT compatible with Symfony 3.x.
+
 v2.0.x > v2.1
 -------------
 - As the parameters used in the template for the email are set via c975L/ConfigBundle, you don't need anymore to override `Resources/views/emails/layout.html.twig` with your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig`, so you can delete it, unless you want to override/disable a block, refer to `README.md` for this.

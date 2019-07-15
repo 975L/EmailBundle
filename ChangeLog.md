@@ -1,5 +1,16 @@
 # Changelog
 
+v3.0
+----
+**Upgrading from v2.x? Check UPGRADE.md**
+- Created branch 2.x (15/07/2019)
+- Made use of `Symfony\Component\Mailer\MailerInterface` and `Symfony\Component\Mime\Email` (15/07/2019)
+
+
+
+v2.x
+====
+
 v2.2.0.2
 --------
 - Changed file rights (15/07/2019)

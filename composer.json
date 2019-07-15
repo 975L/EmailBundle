@@ -29,7 +29,9 @@
         "knplabs/knp-paginator-bundle": "^2",
         "symfony/form": "*",
         "symfony/security": "*",
-        "symfony/swiftmailer-bundle": "^3"
+        "symfony/twig-bundle": "^4",
+        "symfony/mailer": "^4",
+        "twig/cssinliner-extension": "^2"
     },
     "require-dev": {
         "phpstan/phpstan": "^0",

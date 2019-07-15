@@ -4,7 +4,7 @@ EmailBundle
 EmailBundle does the following:
 
 - Stores email in a database as an option,
-- Sends email using [SwiftMailer](https://github.com/symfony/swiftmailer-bundle),
+- Sends email using [Symfony Mailer](https://github.com/symfony/mailer),
 - Allows user with good ROLE to see emails sent,
 - Defines a template for emails that should be overriden to integrate fully with website,
 - Allows to attach one or multiple files.
@@ -44,13 +44,13 @@ class AppKernel extends Kernel
 Step 3: Configure the Bundle
 ----------------------------
 Check dependencies for their configuration:
-- [Swiftmailer](https://github.com/symfony/swiftmailer-bundle)
+- [Symfony Mailer](https://github.com/symfony/mailer)
 - [Doctrine](https://github.com/doctrine/DoctrineBundle)
 - [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
 
 v2.0+ of c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
 
-**Upgrading from v1.x? Check [UPGRADE.md](UPGRADE.md).**
+**Upgrading from v1.x|v2.x? Check [UPGRADE.md](UPGRADE.md).**
 
 Step 4: Enable the Routes
 -------------------------
@@ -116,7 +116,7 @@ class AnyController extends AbstractController
             'replyTo' => 'contact@example.com', //optional
             'body' => $body,
             'attach' => array(
-                array($data, $filename, $contentType),
+                array($filePath, $filename, $contentType),
             ), //optional
             'ip' => $request->getClientIp(), //optional
             );
