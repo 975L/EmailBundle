@@ -1,5 +1,9 @@
 # Changelog
 
+v3.1
+----
+- Made use of apply spaceless (05/08/2019)
+
 v3.0.1
 ------
 - Made use of KnpPagnigatorBundle v4 (15/07/2019)
