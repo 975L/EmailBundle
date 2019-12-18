@@ -34,7 +34,7 @@ class Email
 
     /**
      * DateTime email has been sent
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="date_sent", type="datetime", nullable=true)
      */
@@ -136,7 +136,7 @@ class Email
 
     /**
      * Get dateSent
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDateSent(): ?DateTime
     {

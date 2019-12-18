@@ -1,5 +1,9 @@
 # Changelog
 
+v3.2
+----
+- Changed doctrine-bundle version (18/12/2019)
+
 v3.1
 ----
 - Made use of apply spaceless (05/08/2019)
