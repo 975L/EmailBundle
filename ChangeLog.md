@@ -1,5 +1,10 @@
 # Changelog
 
+v3.3
+----
+- Made use of twig/cssinliner-extra instead of twig/cssinliner-extension as abandonned (19/02/2020)
+- Removed use of symplify/easy-coding-standard as abandonned (19/02/2020)
+
 v3.2
 ----
 - Changed doctrine-bundle version (18/12/2019)
