@@ -1,5 +1,4 @@
-EmailBundle
-===========
+# EmailBundle
 
 EmailBundle does the following:
 
@@ -13,18 +12,18 @@ EmailBundle does the following:
 
 [EmailBundle API documentation](https://975l.com/apidoc/c975L/EmailBundle.html).
 
-Bundle installation
-===================
+## Bundle installation
 
-Step 1: Download the Bundle
----------------------------
+### Step 1: Download the Bundle
+
 Use [Composer](https://getcomposer.org) to install the library
+
 ```bash
     composer require c975l/email-bundle
 ```
 
-Step 2: Enable the Bundle
--------------------------
+### Step 2: Enable the Bundle
+
 Then, enable the bundle by adding it to the list of registered bundles in the `app/AppKernel.php` file of your project:
 
 ```php
@@ -41,19 +40,20 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Configure the Bundle
-----------------------------
+### Step 3: Configure the Bundle
+
 Check dependencies for their configuration:
+
 - [Symfony Mailer](https://github.com/symfony/mailer)
 - [Doctrine](https://github.com/doctrine/DoctrineBundle)
 - [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
 
 v2.0+ of c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
 
-**Upgrading from v1.x|v2.x? Check [UPGRADE.md](UPGRADE.md).**
+Upgrading from v1.x|v2.x? **Check UPGRADE.md.**
 
-Step 4: Enable the Routes
--------------------------
+### Step 4: Enable the Routes
+
 Then, enable the routes by adding them to the `app/config/routing.yml` file of your project:
 
 ```yml
@@ -68,12 +68,12 @@ c975_l_email:
     #    _locale: en|fr|es
 ```
 
-Step 5: Create MySql table
---------------------------
+### Step 5: Create MySql table
+
 You can use `php bin/console make:migration` to create the migration file as documented in [Symfony's Doctrine docs](https://symfony.com/doc/current/doctrine.html) OR use `/Resources/sql/emails.sql` to create the tables `emails` and `emails_archives`. The `DROP TABLE` are commented to avoid dropping by mistake. It will also create a stored procedure `sp_EmailsArchive()` and an event `e_monthly_archives` to archives emails older than 90 days. If you don't want to use this feature, just remove them.
 
-How to use
-----------
+### How to use
+
 Create a Twig template i.e. `app/Resources/views/emails/description.html.twig` with this content:
 
 ```twig
@@ -90,6 +90,7 @@ Create a Twig template i.e. `app/Resources/views/emails/description.html.twig` w
 ```
 
 Then in your Controller, add this code to create, insert in DB and send your email:
+
 ```php
 <?php
 // src/Controller/AnyController.php
@@ -136,8 +137,8 @@ class AnyController extends AbstractController
 }
 ```
 
-Email messages templates
-------------------------
+### Email messages templates
+
 If you wish to override/disable a block defined in the `fullLayout.html.twig` template, create your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` and use the following code:
 
 ```twig
@@ -153,19 +154,21 @@ If you wish to override/disable a block defined in the `fullLayout.html.twig` te
 {% block logo %}
 {% endblock %}
 ```
+
 Have a look at `Resources/views/emails/fullLayout.html.twig`, to see all available blocks.
 
-Footer template
----------------
+### Footer template
+
 You should override the template `Resources/views/emails/footer.html.twig` in your `app/Resources/c975LEmailBundle/views/emails/footer.html.twig` and indicate there all the data you need to display at the bottom of sent email.
 
-Use of dashboard and display messages sent
-------------------------------------------
+### Use of dashboard and display messages sent
+
 You can see the emails sent via the dashboard.
 
 For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the file `layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
 
 In `layout.html.twig`, it will mainly consist to extend your layout and define specific variables, i.e. :
+
 ```twig
 {% extends 'layout.html.twig' %}
 {# or extends 'emails/layout.html.twig' #}
@@ -179,4 +182,4 @@ In `layout.html.twig`, it will mainly consist to extend your layout and define s
 {% endblock %}
 ```
 
-**If this project help you to reduce time to develop, you can [buy me a coffee](https://www.buymeacoffee.com/LaurentMarquet) :)**
+If this project **help you to reduce time to develop**, you can sponsor me via the "Sponsor" button at the top :)

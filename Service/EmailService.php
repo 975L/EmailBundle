@@ -61,8 +61,7 @@ class EmailService implements EmailServiceInterface
         ConfigServiceInterface $configService,
         EntityManagerInterface $em,
         MailerInterface $mailer
-    )
-    {
+    ) {
         $this->configService = $configService;
         $this->em = $em;
         $this->mailer = $mailer;
@@ -115,13 +114,8 @@ class EmailService implements EmailServiceInterface
      */
     public function send(array $emailData, bool $saveDatabase = false)
     {
-        //Creates email
         $this->create($emailData);
-
-        //Validates addresses
         $this->validate($emailData);
-
-        //Persists Email in DB
         $this->persist($saveDatabase);
 
         //Sends email
@@ -156,6 +150,7 @@ class EmailService implements EmailServiceInterface
             $this->message->to($this->email->getSentTo());
         } else {
             $this->message = false;
+
             return false;
         }
 
@@ -165,6 +160,7 @@ class EmailService implements EmailServiceInterface
                 $this->message->replyTo($this->email->getReplyTo());
             } else {
                 $this->message = false;
+
                 return false;
             }
         }
