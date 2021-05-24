@@ -30,7 +30,8 @@
         "symfony/security": "*",
         "symfony/twig-bundle": "^4",
         "symfony/mailer": "^4",
-        "twig/cssinliner-extra": "^3"
+        "twig/cssinliner-extra": "^3",
+        "twig/extra-bundle": "^3"
     },
     "require-dev": {
         "phpstan/phpstan": "^0",
