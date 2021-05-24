@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.3.2.1
+
+- Forgot ChangeLog.md (24/05/2021)
+
+## v3.3.2
+
+- Added dependency to "twig/extra-bundle" (24/05/2021)
+
 ## v3.3.1
 
 - Cosmetic changes due to Codacy review (04/03/2020)
