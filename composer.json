@@ -31,7 +31,8 @@
         "symfony/twig-bundle": "*",
         "symfony/mailer": "*",
         "twig/cssinliner-extra": "*",
-        "twig/extra-bundle": "*"
+        "twig/extra-bundle": "*",
+        "twig/intl-extra": "*"
     },
     "require-dev": {
         "phpstan/phpstan": "*",

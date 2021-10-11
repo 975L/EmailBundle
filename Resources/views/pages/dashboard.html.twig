@@ -37,7 +37,7 @@
                         </td>
 {# Date sent #}
                         <td class="text-center">
-                            {{ email.dateSent|localizeddate('medium', 'medium') }}
+                            {{ email.dateSent|format_datetime('medium', 'medium') }}
                         </td>
                     </tr>
                 {% endfor %}

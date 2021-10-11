@@ -21,7 +21,7 @@
         </p>
 {# Date sent #}
         <p>
-            {{ 'label.sent_date'|trans }} : <strong>{{ email.dateSent|localizeddate('medium', 'medium') }}</strong>
+            {{ 'label.sent_date'|trans }} : <strong>{{ email.dateSent|format_datetime('medium', 'medium') }}</strong>
         </p>
     </div>
 {# Message #}
