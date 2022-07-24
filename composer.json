@@ -27,7 +27,7 @@
         "doctrine/orm": "*",
         "knplabs/knp-paginator-bundle": "*",
         "symfony/form": "*",
-        "symfony/security": "*",
+        "symfony/security-bundle": "*",
         "symfony/twig-bundle": "*",
         "symfony/mailer": "*",
         "twig/cssinliner-extra": "*",
@@ -35,9 +35,6 @@
         "twig/intl-extra": "*"
     },
     "require-dev": {
-        "phpstan/phpstan": "*",
-        "phpunit/phpunit": "*",
-        "rector/rector": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

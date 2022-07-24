@@ -48,9 +48,7 @@ Check dependencies for their configuration:
 - [Doctrine](https://github.com/doctrine/DoctrineBundle)
 - [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
 
-v2.0+ of c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
-
-Upgrading from v1.x|v2.x? **Check UPGRADE.md.**
+c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
 
 ### Step 4: Enable the Routes
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.0
+
+- Changed compatibility to Symfony 6 (24/07/2022)
+
 ## v4.0
 
 - Changed `localizeddate` to `format_datetime` (11/10/2021)
