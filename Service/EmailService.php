@@ -73,7 +73,8 @@ class EmailService implements EmailServiceInterface
     public function getEmails()
     {
         return $this->em
-            ->getRepository('c975LEmailBundle:Email')->findAll()
+            ->getRepository('c975LEmailBundle:Email')
+            ->findAll(array(), array('dateSent' => 'DESC'))
         ;
     }
 
