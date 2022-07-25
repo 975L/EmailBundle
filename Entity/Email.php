@@ -115,7 +115,6 @@ class Email
 
     /**
      * Get id
-     * @return int
      */
     public function getId(): int
     {
@@ -125,9 +124,8 @@ class Email
     /**
      * Set dateSent
      * @param DateTime
-     * @return Email
      */
-    public function setDateSent(?DateTime $dateSent)
+    public function setDateSent(?DateTime $dateSent): Email
     {
         $this->dateSent = $dateSent;
 
@@ -146,9 +144,8 @@ class Email
     /**
      * Set subject
      * @param string
-     * @return Email
      */
-    public function setSubject(?string $subject)
+    public function setSubject(?string $subject): Email
     {
         $this->subject = $subject;
 
@@ -167,9 +164,8 @@ class Email
     /**
      * Set sentFrom
      * @param string
-     * @return Email
      */
-    public function setSentFrom(?string $sentFrom)
+    public function setSentFrom(?string $sentFrom): Email
     {
         $this->sentFrom = $sentFrom;
 
@@ -178,7 +174,6 @@ class Email
 
     /**
      * Get sentFrom
-     * @return string|null
      */
     public function getSentFrom(): ?string
     {
@@ -188,9 +183,8 @@ class Email
     /**
      * Set sentTo
      * @param string
-     * @return Email
      */
-    public function setSentTo(?string $sentTo)
+    public function setSentTo(?string $sentTo): Email
     {
         $this->sentTo = $sentTo;
 
@@ -199,7 +193,6 @@ class Email
 
     /**
      * Get sentTo
-     * @return string|null
      */
     public function getSentTo(): ?string
     {
@@ -209,9 +202,8 @@ class Email
     /**
      * Set sentCc
      * @param string
-     * @return Email
      */
-    public function setSentCc(?string $sentCc)
+    public function setSentCc(?string $sentCc): Email
     {
         $this->sentCc = $sentCc;
 
@@ -220,7 +212,6 @@ class Email
 
     /**
      * Get sentCc
-     * @return string|null
      */
     public function getSentCc(): ?string
     {
@@ -230,9 +221,8 @@ class Email
     /**
      * Set sentBcc
      * @param string
-     * @return Email
      */
-    public function setSentBcc(?string $sentBcc)
+    public function setSentBcc(?string $sentBcc): Email
     {
         $this->sentBcc = $sentBcc;
 
@@ -241,7 +231,6 @@ class Email
 
     /**
      * Get sentBcc
-     * @return string|null
      */
     public function getSentBcc(): ?string
     {
@@ -251,9 +240,8 @@ class Email
     /**
      * Set replyTo
      * @param string
-     * @return Email
      */
-    public function setReplyTo(?string $replyTo)
+    public function setReplyTo(?string $replyTo): Email
     {
         $this->replyTo = $replyTo;
 
@@ -272,9 +260,8 @@ class Email
     /**
      * Set body
      * @param string
-     * @return Email
      */
-    public function setBody(?string $body)
+    public function setBody(?string $body): Email
     {
         $this->body = $body;
 
@@ -293,9 +280,8 @@ class Email
     /**
      * Set ip
      * @param string
-     * @return Email
      */
-    public function setIp(?string $ip)
+    public function setIp(?string $ip): Email
     {
         $this->ip = $ip;
 

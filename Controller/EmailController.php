@@ -49,9 +49,7 @@ class EmailController extends AbstractController
             $request->query->getInt('p', 1),
             50
         );
-        return $this->render('@c975LEmail/pages/dashboard.html.twig', array(
-            'emails' => $emails,
-        ));
+        return $this->render('@c975LEmail/pages/dashboard.html.twig', ['emails' => $emails]);
     }
 
 //DISPLAY
@@ -70,9 +68,7 @@ class EmailController extends AbstractController
         $this->denyAccessUnlessGranted('c975LEmail-display', $email);
 
         //Renders the email
-        return $this->render('@c975LEmail/pages/display.html.twig', array(
-            'email' => $email,
-        ));
+        return $this->render('@c975LEmail/pages/display.html.twig', ['email' => $email]);
     }
 
 //CONFIG
@@ -102,10 +98,7 @@ class EmailController extends AbstractController
         }
 
         //Renders the config form
-        return $this->render('@c975LConfig/forms/config.html.twig', array(
-            'form' => $form->createView(),
-            'toolbar' => '@c975LEmail',
-        ));
+        return $this->render('@c975LConfig/forms/config.html.twig', ['form' => $form->createView(), 'toolbar' => '@c975LEmail']);
     }
 
 //HELP

@@ -50,6 +50,8 @@ Check dependencies for their configuration:
 
 c975LEmailBundle uses [c975L/ConfigBundle](https://github.com/975L/ConfigBundle) to manage configuration parameters. Use the Route "/email/config" with the proper user role to modify them.
 
+**If you are NOT using Messenger** remember to disable the contents in config/packages/messenger.yaml or configure it properly.
+
 ### Step 4: Enable the Routes
 
 Then, enable the routes by adding them to the `app/config/routing.yml` file of your project:

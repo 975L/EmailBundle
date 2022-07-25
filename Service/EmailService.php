@@ -28,43 +28,31 @@ use Symfony\Component\Mime\Email as Message;
 class EmailService implements EmailServiceInterface
 {
     /**
-     * Stores ConfigServiceInterface
-     * @var ConfigServiceInterface
-     */
-    private $configService;
-
-    /**
-     * Stores EntityManagerInterface
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
      * Stores Email Entity
-     * @var Email
      */
-    private $email;
-
-    /**
-     * Stores mailer
-     * @var MailerInterface
-     */
-    private $mailer;
+    private ?\c975L\EmailBundle\Entity\Email $email = null;
 
     /**
      * Stores message
-     * @var Swift_Message
+     * @var Message
      */
     private $message;
 
     public function __construct(
-        ConfigServiceInterface $configService,
-        EntityManagerInterface $em,
-        MailerInterface $mailer
-    ) {
-        $this->configService = $configService;
-        $this->em = $em;
-        $this->mailer = $mailer;
+        /**
+         * Stores ConfigServiceInterface
+         */
+        private readonly ConfigServiceInterface $configService,
+        /**
+         * Stores EntityManagerInterface
+         */
+        private readonly EntityManagerInterface $em,
+        /**
+         * Stores mailer
+         */
+        private readonly MailerInterface $mailer
+    )
+    {
     }
 
     /**
@@ -85,8 +73,7 @@ class EmailService implements EmailServiceInterface
     public function getEmails()
     {
         return $this->em
-            ->getRepository('c975LEmailBundle:Email')
-            ->findAll(array(), array('dateSent' => 'DESC'))
+            ->getRepository('c975LEmailBundle:Email')->findAll()
         ;
     }
 

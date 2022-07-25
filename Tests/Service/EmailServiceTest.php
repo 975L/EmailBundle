@@ -25,25 +25,13 @@ class EmailServiceTest extends TestCase
         $this->mailer = $this->getMockBuilder('\Swift_Mailer')
             ->disableOriginalConstructor()
             ->getMock();
-        $this->em = $this->getMockBuilder('\Doctrine\ORM\EntityManagerInterface')
+        $this->em = $this->getMockBuilder(\Doctrine\ORM\EntityManagerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         //Defines data
         $this->emailService = new EmailService($this->mailer, $this->em);
-        $this->emailData = array(
-            'subject' => 'YOUR_SUBJECT',
-            'sentFrom' => 'contact@example.com',
-            'sentTo' => 'contact@example.com',
-            'sentCc' => 'contact@example.com',
-            'sentBcc' => 'contact@example.com',
-            'replyTo' => 'contact@example.com',
-            'body' => 'body',
-            'attach' => array(
-                array('data', 'filename', 'text/html'),
-            ),
-            'ip' => 'IP_ADDRESS',
-            );
+        $this->emailData = ['subject' => 'YOUR_SUBJECT', 'sentFrom' => 'contact@example.com', 'sentTo' => 'contact@example.com', 'sentCc' => 'contact@example.com', 'sentBcc' => 'contact@example.com', 'replyTo' => 'contact@example.com', 'body' => 'body', 'attach' => [['data', 'filename', 'text/html']], 'ip' => 'IP_ADDRESS'];
     }
 
     //Test sending a good email

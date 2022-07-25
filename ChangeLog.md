@@ -1,5 +1,11 @@
 # Changelog
 
+## v6.0
+
+- Added note about messenger use (25/07/2022)
+
+Upgrading from v5.x? **Check UPGRADE.md**
+
 ## v5.0.1
 
 - Added return type for Voter (24/07/2022)
@@ -7,6 +13,8 @@
 ## v5.0
 
 - Changed compatibility to Symfony 6 (24/07/2022)
+
+Upgrading from v4.x? **Check UPGRADE.md**
 
 ## v4.0
 
