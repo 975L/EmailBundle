@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.0.2
+
+- Added TreeBuilder return type (29/05/2023)
+
 ## v6.0.1
 
 - Changed (back) the order for emails to be displayed in the dashboard (25/07/2022)
