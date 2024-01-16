@@ -19,7 +19,7 @@ class EmailServiceTest extends TestCase
     private $emailService;
     private $emailData;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         //Defines needed mocks
         $this->mailer = $this->getMockBuilder('\Swift_Mailer')

@@ -9,8 +9,14 @@
 
 namespace c975L\EmailBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class c975LEmailBundle extends Bundle
+class c975LEmailBundle extends AbstractBundle
 {
+    public function loadExtension(array $config, ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void
+    {
+        $containerConfigurator->import('../config/services.yml');
+    }
 }

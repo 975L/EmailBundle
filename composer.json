@@ -40,7 +40,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "c975L\\EmailBundle\\": ""
+            "c975L\\EmailBundle\\": "src/"
         }
     },
     "config": {

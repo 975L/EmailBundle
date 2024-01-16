@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.0
+
+- Changed to new recomended bundle SF 7 structure (15/01/2024)
+
 ## v6.0.2
 
 - Added TreeBuilder return type (29/05/2023)
