@@ -1,8 +1,14 @@
 # Changelog
 
+## v7.0.1
+
+- Corrected structure (16/01/2024)
+
 ## v7.0
 
-- Changed to new recomended bundle SF 7 structure (15/01/2024)
+- Changed to new recomended bundle SF 7 structure (16/01/2024)
+
+Upgrading from v6.x? **Check UPGRADE.md**
 
 ## v6.0.2
 
