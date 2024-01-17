@@ -9,12 +9,9 @@
 
 namespace c975L\EmailBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Knp\Component\Pager\PaginatorInterface;
@@ -34,11 +31,12 @@ class EmailController extends AbstractController
      * Displays the dashboard
      * @return Response
      * @throws AccessDeniedException
-     *
-     * @Route("/email/dashboard",
-     *      name="email_dashboard",
-     *      methods={"GET", "HEAD"})
      */
+    #[Route(
+        '/email/dashboard',
+        name: 'email_dashboard',
+        methods: ['GET']
+    )]
     public function dashboard(Request $request, EmailServiceInterface $emailService, PaginatorInterface $paginator)
     {
         $this->denyAccessUnlessGranted('c975LEmail-dashboard', null);
@@ -57,12 +55,15 @@ class EmailController extends AbstractController
      * Displays the email corresponding to its id
      * @return Response
      * @throws AccessDeniedException
-     *
-     * @Route("/email/{id}",
-     *      name="email_display",
-     *      requirements={"id": "^([0-9]+)"},
-     *      methods={"GET", "HEAD"})
      */
+    #[Route(
+        '/email/{id}',
+        name: 'email_display',
+        requirements: [
+            'id' => '^([0-9]+)'
+        ],
+        methods: ['GET']
+    )]
     public function display(Email $email)
     {
         $this->denyAccessUnlessGranted('c975LEmail-display', $email);
@@ -76,11 +77,12 @@ class EmailController extends AbstractController
      * Displays the configuration
      * @return Response
      * @throws AccessDeniedException
-     *
-     * @Route("/email/config",
-     *      name="email_config",
-     *      methods={"GET", "HEAD", "POST"})
      */
+    #[Route(
+        '/email/config',
+        name: 'email_config',
+        methods: ['GET', 'POST']
+    )]
     public function config(Request $request, ConfigServiceInterface $configService)
     {
         $this->denyAccessUnlessGranted('c975LEmail-config', null);
@@ -106,11 +108,12 @@ class EmailController extends AbstractController
      * Displays the help
      * @return Response
      * @throws AccessDeniedException
-     *
-     * @Route("/email/help",
-     *      name="email_help",
-     *      methods={"GET", "HEAD"})
      */
+    #[Route(
+        '/email/help',
+        name: 'email_help',
+        methods: ['GET']
+    )]
     public function help()
     {
         $this->denyAccessUnlessGranted('c975LEmail-help', null);

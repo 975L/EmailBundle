@@ -31,7 +31,18 @@ class EmailServiceTest extends TestCase
 
         //Defines data
         $this->emailService = new EmailService($this->mailer, $this->em);
-        $this->emailData = ['subject' => 'YOUR_SUBJECT', 'sentFrom' => 'contact@example.com', 'sentTo' => 'contact@example.com', 'sentCc' => 'contact@example.com', 'sentBcc' => 'contact@example.com', 'replyTo' => 'contact@example.com', 'body' => 'body', 'attach' => [['data', 'filename', 'text/html']], 'ip' => 'IP_ADDRESS'];
+        $this->emailData = [
+            'subject' => 'YOUR_SUBJECT',
+            'sentFrom' => 'contact@example.com',
+            'sentTo' => 'contact@example.com',
+            'sentCc' => 'contact@example.com',
+            'sentBcc' => 'contact@example.com',
+            'replyTo' => 'contact@example.com',
+            'body' => 'body',
+            'attach' => [['data',
+            'filename',
+            'text/html']], 'ip' => 'IP_ADDRESS'
+        ];
     }
 
     //Test sending a good email
