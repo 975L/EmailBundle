@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.1.2
+
+- Cosmetic changes (22/01/2024)
+
 ## v7.1.1
 
 - Moved Tests folder under src (17/01/2024)
