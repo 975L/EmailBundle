@@ -78,7 +78,7 @@ Have a look at the following links if you wish to use [Symfony Messenger](https:
 
 ### How to use
 
-Create a Twig template i.e. `app/Resources/views/emails/description.html.twig` with this content:
+Create a Twig template i.e. `templates/emails/description.html.twig` with this content:
 
 ```twig
 {# If you want to use the template provided by c975LEmailBundle you have to extend its layout #}
@@ -143,7 +143,7 @@ class AnyController extends AbstractController
 
 ### Email messages templates
 
-If you wish to override/disable a block defined in the `fullLayout.html.twig` template, create your `app/Resources/c975LEmailBundle/views/emails/layout.html.twig` and use the following code:
+If you wish to override/disable a block defined in the `fullLayout.html.twig` template, create your `templates/bundles/c975LEmailBundle/emails/layout.html.twig` and use the following code:
 
 ```twig
 {% extends "@c975LEmail/emails/fullLayout.html.twig" %}
@@ -159,17 +159,17 @@ If you wish to override/disable a block defined in the `fullLayout.html.twig` te
 {% endblock %}
 ```
 
-Have a look at `Resources/views/emails/fullLayout.html.twig`, to see all available blocks.
+Have a look at `templates/emails/fullLayout.html.twig`, to see all available blocks.
 
 ### Footer template
 
-You should override the template `Resources/views/emails/footer.html.twig` in your `app/Resources/c975LEmailBundle/views/emails/footer.html.twig` and indicate there all the data you need to display at the bottom of sent email.
+You should override the template `templates/emails/footer.html.twig` in your `templates/bundles/c975LEmailBundle/emails/footer.html.twig` and indicate there all the data you need to display at the bottom of sent email.
 
 ### Use of dashboard and display messages sent
 
 You can see the emails sent via the dashboard.
 
-For this, simply, create the following structure `app/Resources/c975LEmailBundle/views/` in your app and then duplicate the file `layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
+For this, simply, create the following structure `templates/bundles/c975LEmailBundle/` in your app and then duplicate the file `layout.html.twig` in it, to override the existing Bundle files, then apply your needed changes.
 
 In `layout.html.twig`, it will mainly consist to extend your layout and define specific variables, i.e. :
 

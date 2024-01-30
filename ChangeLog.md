@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.2.1
+
+- Updated README (30/01/2024)
+
 ## v7.2
 
 - Added Entity to auto-wire (29/01/2024)
