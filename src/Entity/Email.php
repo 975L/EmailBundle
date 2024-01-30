@@ -16,60 +16,54 @@ use Doctrine\ORM\Mapping as ORM;
  * Entity Email (linked to DB table `emails`)
  * @author Laurent Marquet <laurent.marquet@laposte.net>
  * @copyright 2017 975L <contact@975l.com>
- *
- * @ORM\Table(name="emails")
- * @ORM\Entity
  */
-class Email
+
+ #[ORM\Entity]
+ #[ORM\Table(name: 'emails')]
+ class Email
 {
     /**
      * Email unique id
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type: "integer")]
     protected $id;
 
     /**
      * DateTime email has been sent
      * @var DateTime
-     *
-     * @ORM\Column(name="date_sent", type="datetime", nullable=true)
      */
+    #[ORM\Column(type: "datetime", nullable: true)]
     protected $dateSent;
 
     /**
      * Subject of the email
      * @var string
-     *
-     * @ORM\Column(name="subject", type="string", length=256, nullable=true)
      */
+    #[ORM\Column(type: "string", length: 256, nullable: true)]
     protected $subject;
 
     /**
      * Email address sent from
      * @var string
-     *
-     * @ORM\Column(name="sent_from", type="string", length=128, nullable=true)
      */
+    #[ORM\Column(type: "string", length: 128, nullable: true)]
     protected $sentFrom;
 
     /**
      * Email address sent to
      * @var string
-     *
-     * @ORM\Column(name="sent_to", type="string", length=128, nullable=true)
      */
+    #[ORM\Column(type: "string", length: 128, nullable: true)]
     protected $sentTo;
 
     /**
      * Email address sent cc
      * @var string
-     *
-     * @ORM\Column(name="sent_cc", type="string", length=128, nullable=true)
      */
+    #[ORM\Column(type: "string", length: 128, nullable: true)]
     protected $sentCc;
 
     /**
@@ -87,18 +81,9 @@ class Email
     /**
      * Body of email
      * @var string
-     *
-     * @ORM\Column(name="body", type="text", length=65000, nullable=true)
      */
+    #[ORM\Column(type: "text", length: 65000, nullable: true)]
     protected $body;
-
-    /**
-     * IP address
-     * @var string
-     *
-     * @ORM\Column(name="ip", type="string", length=48, nullable=true)
-     */
-    protected $ip;
 
     /**
      * Hydrates entity from associative array
@@ -275,25 +260,5 @@ class Email
     public function getBody(): ?string
     {
         return $this->body;
-    }
-
-    /**
-     * Set ip
-     * @param string
-     */
-    public function setIp(?string $ip): Email
-    {
-        $this->ip = $ip;
-
-        return $this;
-    }
-
-    /**
-     * Get ip
-     * @return string
-     */
-    public function getIp(): ?string
-    {
-        return $this->ip;
     }
 }

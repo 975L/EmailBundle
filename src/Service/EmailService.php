@@ -30,7 +30,7 @@ class EmailService implements EmailServiceInterface
     /**
      * Stores Email Entity
      */
-    private ?\c975L\EmailBundle\Entity\Email $email = null;
+    private ?Email $email = null;
 
     /**
      * Stores message

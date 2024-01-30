@@ -68,9 +68,13 @@ c975_l_email:
     #    _locale: en|fr|es
 ```
 
-### Step 5: Create MySql table
+### Step 4: Create MySql table
 
 You can use `php bin/console make:migration` to create the migration file as documented in [Symfony's Doctrine docs](https://symfony.com/doc/current/doctrine.html) OR use `/Resources/sql/emails.sql` to create the tables `emails` and `emails_archives`. The `DROP TABLE` are commented to avoid dropping by mistake. It will also create a stored procedure `sp_EmailsArchive()` and an event `e_monthly_archives` to archives emails older than 90 days. If you don't want to use this feature, just remove them.
+
+### Step 5: Create MySql table
+
+Have a look at the following links if you wish to use [Symfony Messenger](https://symfony.com/doc/current/messenger.html) to dispatch messages with [Doctrine](https://symfony.com/doc/current/messenger.html#doctrine-transport). If you want to use async you may also have a look at [this answer on StackOverflow](https://stackoverflow.com/a/73547566/6028808).
 
 ### How to use
 

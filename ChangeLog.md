@@ -1,5 +1,12 @@
 # Changelog
 
+## v7.2
+
+- Added Entity to auto-wire (29/01/2024)
+- Removed storage of ip addresses (29/01/2024)
+- Converted entity annotaions to attributes (29/01/2024)
+- Added info in README (30/01/2024)
+
 ## v7.1.2
 
 - Cosmetic changes (22/01/2024)
