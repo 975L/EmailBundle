@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.2.3
+
+- Changed DependencyInjection Extension (10/09/2024)
+
 ## v7.2.2
 
 - Commented test (to be fixed) (30/01/2024)
