@@ -30,7 +30,6 @@
     {% set copyright = copyright ~ ': ' ~ site %}
 {% endif %}
 
-{% apply spaceless %}
 {% apply inline_css %}
 <!DOCTYPE html>
 {# Head #}
@@ -133,5 +132,4 @@
         {% endblock %}
     </body>
 </html>
-{% endapply %}
 {% endapply %}
