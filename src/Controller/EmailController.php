@@ -47,7 +47,7 @@ class EmailController extends AbstractController
             $request->query->getInt('p', 1),
             50
         );
-        return $this->render('@c975LEmail/pages/dashboard.html.twig', ['emails' => $emails]);
+        return $this->render('@c975LEmail/pages/dashboard.html.twig', ['emails' => $emails])->setMaxAge(3600);
     }
 
 //DISPLAY
@@ -69,7 +69,7 @@ class EmailController extends AbstractController
         $this->denyAccessUnlessGranted('c975LEmail-display', $email);
 
         //Renders the email
-        return $this->render('@c975LEmail/pages/display.html.twig', ['email' => $email]);
+        return $this->render('@c975LEmail/pages/display.html.twig', ['email' => $email])->setMaxAge(3600);
     }
 
 //CONFIG
@@ -100,7 +100,7 @@ class EmailController extends AbstractController
         }
 
         //Renders the config form
-        return $this->render('@c975LConfig/forms/config.html.twig', ['form' => $form->createView(), 'toolbar' => '@c975LEmail']);
+        return $this->render('@c975LConfig/forms/config.html.twig', ['form' => $form->createView(), 'toolbar' => '@c975LEmail'])->setMaxAge(3600);
     }
 
 //HELP
@@ -119,6 +119,6 @@ class EmailController extends AbstractController
         $this->denyAccessUnlessGranted('c975LEmail-help', null);
 
         //Renders the help
-        return $this->render('@c975LEmail/pages/help.html.twig');
+        return $this->render('@c975LEmail/pages/help.html.twig')->setMaxAge(3600);
     }
 }
