@@ -1,5 +1,10 @@
 # Changelog
 
+## v7.4.1
+
+- Added parameter c975LCommon.url (10/01/2025)
+- Modified url for logo (10/01/2025)
+
 ## v7.4
 
 - Added ->setMaxAge(3600) to controllers (15/09/2024)

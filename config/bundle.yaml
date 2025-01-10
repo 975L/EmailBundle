@@ -32,3 +32,8 @@ c975LCommon:
         required: false
         default: null
         info: "Path for the logo to be display in email (recommended): i.e. images/logo.png (Default: null)"
+    url:
+        type: string
+        required: false
+        default: null
+        info: "url of the website i.e. https://example.com"
