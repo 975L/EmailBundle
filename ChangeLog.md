@@ -1,5 +1,9 @@
 # Changelog
 
+## v7.5
+
+- Removed use of`c975L/ServicesBundle` and replaced by `c975L/SiteBundle` (09/03/2025)
+
 ## v7.4.1
 
 - Added parameter c975LCommon.url (10/01/2025)
